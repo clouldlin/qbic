@@ -1,19 +1,10 @@
-package com.qbic.web.common.vo;
+package co.kr.qbic.common.vo;
 
 import java.io.Serializable;
 
-
-/**
-*
-* @Class Name   :CommonVO.java
-* @Description  :CommonVO.java
-* @version 1.0
-* @see
-*
- */
 public class CommonVO implements Serializable{
 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 8580230224372744159L;
 
 	/** 공통 코드 구분*/
 	private String grpCd = "";

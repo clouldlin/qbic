@@ -27,10 +27,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 
-import com.qbic.web.common.util.CoStringUtil;
-import com.qbic.web.common.vo.CoDefaultVO;
-import com.qbic.web.login.LoginSessionManager;
-import com.qbic.web.login.vo.LoginVO;
+import co.kr.qbic.common.login.LoginSessionManager;
+import co.kr.qbic.common.login.vo.LoginVO;
+import co.kr.qbic.common.util.CoStringUtil;
+import co.kr.qbic.common.vo.CoDefaultVO;
 
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
