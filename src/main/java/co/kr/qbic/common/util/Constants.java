@@ -1,4 +1,4 @@
-package com.qbic.web.common;
+package co.kr.qbic.common.util;
 
 public class Constants {
 	

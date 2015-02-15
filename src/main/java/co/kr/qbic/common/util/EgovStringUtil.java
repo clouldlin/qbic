@@ -15,7 +15,7 @@
  * 
  */
 
-package com.qbic.web.common.util;
+package co.kr.qbic.common.util;
 
 /*
  * Copyright 2001-2006 The Apache Software Foundation.

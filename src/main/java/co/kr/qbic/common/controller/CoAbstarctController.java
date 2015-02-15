@@ -27,32 +27,15 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 
+import co.kr.qbic.common.code.CodeService;
 import co.kr.qbic.common.login.LoginSessionManager;
-import co.kr.qbic.common.login.vo.LoginVO;
 import co.kr.qbic.common.util.CoStringUtil;
-import co.kr.qbic.common.vo.CoDefaultVO;
-
+import co.kr.qbic.common.vo.CommonVO;
+import co.kr.qbic.common.vo.LoginVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationManager;
 
-
-/**
-*
-* @Class Name :CoAbstarctController.java
-* @Description :CoAbstarctController.java
-* @Modification Information
-* @
-* @  수정일            수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2013.11.14	정용진		최초생성
-* @author CMS
-* @since 2013. 11. 14
-* @version 1.0
-* @see
-*
-* Copyright (C) by IIT All right reserved.
- */
 public class CoAbstarctController {
 
 	 /** EgovPropertyService */
@@ -77,7 +60,7 @@ public class CoAbstarctController {
 	protected List listCommCode(String grpCd){
 
 		grpCd = CoStringUtil.isNullBlank(grpCd);
-		CoDefaultVO searchVO = new CoDefaultVO();
+		CommonVO searchVO = new CommonVO();
 		searchVO.setGrpCd(grpCd);
 		List codeList = null;
 
@@ -85,30 +68,6 @@ public class CoAbstarctController {
 		try
 		{
 			codeList = codeService.selectListCode(searchVO);
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		return codeList;
-	}
-
-
-	/**
-	 * DNABANK 공통코드를 조회해서 List로 넘겨준다.
-	 * @see
-	 */
-	protected List listCommCodeDna(String grpCd){
-
-		grpCd = CoStringUtil.isNullBlank(grpCd);
-		CoDefaultVO searchVO = new CoDefaultVO();
-		searchVO.setGrpCd(grpCd);
-		List codeList = null;
-
-		/*분류 선택에 의한 하위 코드 리스트 불러오기 */
-		try
-		{
-			codeList = codeService.selectListCodeDna(searchVO);
 		}
 		catch(Exception e)
 		{
@@ -183,7 +142,7 @@ public class CoAbstarctController {
 	 * PaginationInfo 에 페이지에 대한 정보를 셋팅해 준다.
 	 * @see
 	 */
-	protected PaginationInfo setPaginationInfo(CoDefaultVO searchVO) {
+	protected PaginationInfo setPaginationInfo(CommonVO searchVO) {
 
 		/** pageing setting */
 			PaginationInfo paInfo = new PaginationInfo();
@@ -198,7 +157,7 @@ public class CoAbstarctController {
 	 * pageRecourdCount 에 대한 셋팅
 	 * @see
 	 */
-	protected PaginationInfo setPaginationInfo(CoDefaultVO searchVO, Map<String,String> commandMap) {
+	protected PaginationInfo setPaginationInfo(CommonVO searchVO, Map<String,String> commandMap) {
 
 		/** pageing setting */
 			PaginationInfo paInfo = new PaginationInfo();

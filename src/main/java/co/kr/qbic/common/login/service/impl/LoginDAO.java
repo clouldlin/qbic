@@ -1,9 +1,8 @@
-package com.qbic.web.login.service.impl;
+package co.kr.qbic.common.login.service.impl;
 
 import org.springframework.stereotype.Repository;
 
-import com.qbic.web.login.vo.LoginVO;
-
+import co.kr.qbic.common.vo.LoginVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 @Repository("loginDAO")

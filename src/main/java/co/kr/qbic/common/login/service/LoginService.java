@@ -1,6 +1,6 @@
-package com.qbic.web.login.service;
+package co.kr.qbic.common.login.service;
 
-import com.qbic.web.login.vo.LoginVO;
+import co.kr.qbic.common.vo.LoginVO;
 
 public interface LoginService {
 	public LoginVO selectLoginUser(LoginVO loginVO);

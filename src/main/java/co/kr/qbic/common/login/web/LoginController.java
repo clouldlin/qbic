@@ -1,4 +1,4 @@
-package co.kr.qbic.login.web;
+package co.kr.qbic.common.login.web;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -22,11 +22,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.WebUtils;
 
-import com.qbic.web.common.Constants;
-import com.qbic.web.common.controller.CoAbstarctController;
-import com.qbic.web.common.util.CoStringUtil;
-import com.qbic.web.login.service.LoginService;
-import com.qbic.web.login.vo.LoginVO;
+import co.kr.qbic.common.controller.CoAbstarctController;
+import co.kr.qbic.common.login.service.LoginService;
+import co.kr.qbic.common.util.CoStringUtil;
+import co.kr.qbic.common.util.Constants;
+import co.kr.qbic.common.vo.LoginVO;
 
 @Controller
 @RequestMapping("/member/")

@@ -8,7 +8,6 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import co.kr.qbic.common.code.CodeService;
-import co.kr.qbic.common.service.impl.DnaBankCodeDAO;
 import co.kr.qbic.common.vo.CommonVO;
 
 @Service("codeService")

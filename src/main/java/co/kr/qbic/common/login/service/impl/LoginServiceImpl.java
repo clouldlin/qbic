@@ -1,11 +1,11 @@
-package com.qbic.web.login.service.impl;
+package co.kr.qbic.common.login.service.impl;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.qbic.web.login.service.LoginService;
-import com.qbic.web.login.vo.LoginVO;
+import co.kr.qbic.common.login.service.LoginService;
+import co.kr.qbic.common.vo.LoginVO;
 
 @Service("loginService")
 public class LoginServiceImpl  implements LoginService{

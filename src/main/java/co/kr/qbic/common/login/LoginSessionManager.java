@@ -1,4 +1,4 @@
-package co.kr.qbic.login;
+package co.kr.qbic.common.login;
 
 import java.io.Serializable;
 
@@ -8,8 +8,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.WebUtils;
 
-import com.qbic.web.common.Constants;
-import com.qbic.web.login.vo.LoginVO;
+import co.kr.qbic.common.util.Constants;
+import co.kr.qbic.common.vo.LoginVO;
 
 @Service(value = "loginSessionManager")
 public class LoginSessionManager implements Serializable {
