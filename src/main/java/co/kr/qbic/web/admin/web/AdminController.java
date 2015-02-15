@@ -1,4 +1,4 @@
-package co.kr.qbic.admin.web;
+package co.kr.qbic.web.admin.web;
 
 import java.util.List;
 import java.util.Map;
@@ -10,10 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import co.kr.qbic.admin.service.AdminService;
 import co.kr.qbic.common.controller.CommonAbstarctController;
 import co.kr.qbic.common.util.CommonStringUtil;
 import co.kr.qbic.common.vo.CommonVO;
+import co.kr.qbic.web.admin.service.AdminService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller

@@ -1,4 +1,4 @@
-package co.kr.qbic.admin.service.impl;
+package co.kr.qbic.web.admin.service.impl;
 
 import java.util.List;
 import java.util.Map;

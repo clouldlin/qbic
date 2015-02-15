@@ -39,7 +39,7 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationManager;
 public class CoAbstarctController {
 
 	 /** EgovPropertyService */
-    @Resource(name = "egovPropertiesService")
+    @Resource(name = "propertyService")
     protected EgovPropertyService propertiesService;
 
 	@Resource(name = "loginSessionManager")

@@ -1,4 +1,4 @@
-package co.kr.qbic.board.service;
+package co.kr.qbic.web.board.service;
 
 import java.util.List;
 import java.util.Map;
