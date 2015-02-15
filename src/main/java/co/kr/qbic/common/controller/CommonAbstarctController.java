@@ -4,7 +4,9 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import co.kr.qbic.common.code.CodeService;
 import co.kr.qbic.common.vo.CommonVO;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -12,6 +14,9 @@ public class CommonAbstarctController {
 
 	final static Logger logger = LoggerFactory.getLogger(CommonAbstarctController.class);
 
+	@Autowired
+	protected CodeService codeService;
+	
 	/**
 	 * PaginationInfo 에 페이지에 대한 정보를 셋팅해 준다.
 	 * pageRecourdCount 에 대한 셋팅
