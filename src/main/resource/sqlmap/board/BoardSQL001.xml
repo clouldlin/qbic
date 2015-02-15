@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="BoardSQL001">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+
+	<resultMap id="clobMap" class="EgovMap">
+		<result property="seq" column="SEQ"/>
+		<result property="title" column="TITLE"/>
+		<result property="content" column="CONTENT" jdbcType="CLOB" javaType="java.lang.String"/>
+		<result property="reg_date" column="REG_DATE"/>	
+		<result property="hit_count" column="HIT_COUNT"/>	
+	</resultMap>
+
+	<select id="boardList" parameterClass="java.util.Map" resultMap="clobMap">
+		SELECT *
+			FROM
+				(SELECT T1.*,
+			        	ROWNUM RNUM
+			        FROM
+					   (SELECT T1.SEQ,
+						       T1.TITLE,
+						       T1.CONTENT,
+						       T1.REG_DATE,
+						       T1.HIT_COUNT
+							  FROM BOARD T1
+							  ORDER BY T1.SEQ DESC
+						) T1
+				) T1		
+		      	<![CDATA[
+					 WHERE T1.RNUM <= #lastIndex#
+	    	 and T1.RNUM > #firstIndex# 
+			]]>
+	</select>
+	
+	<select id="boardListTotalCount" parameterClass="java.util.Map" resultClass="int">
+		SELECT COUNT(*) totcnt
+		FROM BOARD 
+	</select>
+</sqlMap>

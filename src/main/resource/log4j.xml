@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration
+        PUBLIC "-//Apache//DTD Log4j 1.2//EN"
+        "http://logging.apache.org/log4j/docs/api/org/apache/log4j/xml/log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+    <appender name="CON" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %5p [%c] %m%n" />
+        </layout>
+    </appender>
+
+    <appender name="ROLL" class="org.apache.log4j.RollingFileAppender">
+        <param name="File" value="C:\Dropbox\Document\logs\qbic\qbic.log" />
+        <param name="MaxFileSize" value="10MB" />
+        <param name="MaxBackupIndex" value="50" />
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %5p [%c] %m%n" />
+        </layout>
+    </appender>
+
+	<logger name="java.sql.Connection">
+	    <level value="debug" />
+	</logger>
+
+	<logger name="java.sql.Statement">
+	    <level value="debug" />
+	</logger>
+
+	<logger name="java.sql.PreparedStatement">
+	    <level value="debug" />
+	</logger>
+
+	<!--
+ 	<logger name="java.sql.ResultSet">
+	    <level value="debug" />
+	</logger>
+	-->
+
+	<!-- log SQL with timing information, post execution -->
+	<!--
+	<logger name="jdbc.sqltiming" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="CON" />
+	</logger>
+	-->
+
+	<logger name="org.springframework" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CON" />
+		<appender-ref ref="ROLL" />
+	</logger>
+
+
+	<logger name="java.sql" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CON" />
+		<appender-ref ref="ROLL" />
+	</logger>
+	<root>
+		<level value="INFO" additivity="false"/>
+		<appender-ref ref="CON" />
+		<appender-ref ref="ROLL" />
+	</root>
+</log4j:configuration>
