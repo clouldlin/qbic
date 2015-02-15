@@ -10,11 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.qbic.web.admin.service.AdminService;
-import com.qbic.web.common.controller.CommonAbstarctController;
-import com.qbic.web.common.util.CommonStringUtil;
-import com.qbic.web.common.vo.CommonVO;
-
+import co.kr.qbic.admin.service.AdminService;
+import co.kr.qbic.common.controller.CommonAbstarctController;
+import co.kr.qbic.common.util.CommonStringUtil;
+import co.kr.qbic.common.vo.CommonVO;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller

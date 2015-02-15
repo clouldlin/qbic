@@ -1,4 +1,4 @@
-package com.qbic.web.admin.service.impl;
+package co.kr.qbic.admin.service.impl;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.qbic.web.admin.service.AdminService;
+import co.kr.qbic.admin.service.AdminService;
 
 
 @Service("adminService")
