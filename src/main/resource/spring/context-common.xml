@@ -12,7 +12,7 @@
     					http://cxf.apache.org/jaxws
 						http://cxf.apache.org/schemas/jaxws.xsd">
 
-    <context:component-scan base-package="com.qbic.web">
+    <context:component-scan base-package="co.kr.qbic">
        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
 

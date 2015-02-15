@@ -1,4 +1,4 @@
-package com.qbic.web.board.web;
+package co.kr.qbic.admin.web;
 
 import java.util.List;
 import java.util.Map;
@@ -10,7 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.qbic.web.board.service.BoardService;
+import com.qbic.web.admin.service.AdminService;
 import com.qbic.web.common.controller.CommonAbstarctController;
 import com.qbic.web.common.util.CommonStringUtil;
 import com.qbic.web.common.vo.CommonVO;
@@ -18,14 +18,14 @@ import com.qbic.web.common.vo.CommonVO;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
-@RequestMapping("/board/")
-public class BoardController extends CommonAbstarctController {
+@RequestMapping("/admin/")
+public class AdminController extends CommonAbstarctController {
 
-	@Resource(name="boardService")
-	BoardService boardService;
+	@Resource(name="adminService")
+	AdminService adminService;
 
 	@RequestMapping("list.do")
-	public String boardList(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception
+	public String adminList(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception
 	{
 		/** 페이징 처리 */
 		int pageIndex  			= CommonStringUtil.isEmpty(commandMap.get("pageIndex")) ? 1: Integer.parseInt(commandMap.get("pageIndex"));
@@ -36,40 +36,32 @@ public class BoardController extends CommonAbstarctController {
 		commonVO.setPageUnit(pageUnit);
 		PaginationInfo paginationInfo  = this.setPaginationInfo(commonVO, commandMap);
 
-		int totCnt=0;
+		int totCnt = 0;
 
-		List<?> list = boardService.boardList(commandMap);
+		List<?> list = adminService.adminList(commandMap);
 
-		totCnt= boardService.boardListTotalCount(commandMap);
+		totCnt= adminService.adminListTotalCount(commandMap);
 		paginationInfo.setTotalRecordCount(totCnt);
 		
-		model.addAttribute("boardList", list);
-		//model.addAttribute("commandMap"		, commandMap);
+		model.addAttribute("adminList", list);
 		model.addAttribute("commonVO"		, commonVO);
 		model.addAttribute("listTotal"		, totCnt);
 		model.addAttribute("paginationInfo"	, paginationInfo);
-		model.addAttribute("content","board/boardList.jsp");
-		return "main.tiles";
-	}
-	
-	@RequestMapping("write.do")
-	public String boardWrite(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception
-	{
-		model.addAttribute("content","board/boardUpdate.jsp");
+		model.addAttribute("content","admin/adminList.jsp");
 		return "main.tiles";
 	}
 	
 	@RequestMapping("detail.do")
-	public String boardDetail(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception
+	public String adminDetail(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception
 	{
-		model.addAttribute("content","board/boardDetail.jsp");
+		model.addAttribute("content","admin/adminDetail.jsp");
 		return "main.tiles";
 	}
 	
 	@RequestMapping("update.do")
-	public String boardUpdate(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception
+	public String adminUpdate(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception
 	{
-		model.addAttribute("content","board/boardUpdate.jsp");
+		model.addAttribute("content","admin/adminUpdate.jsp");
 		return "main.tiles";
 	}
 	
