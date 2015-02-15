@@ -24,8 +24,8 @@ import org.springframework.web.util.WebUtils;
 
 import co.kr.qbic.common.controller.CoAbstarctController;
 import co.kr.qbic.common.login.service.LoginService;
-import co.kr.qbic.common.util.CoStringUtil;
-import co.kr.qbic.common.util.Constants;
+import co.kr.qbic.common.util.string.CoStringUtil;
+import co.kr.qbic.common.util.string.Constants;
 import co.kr.qbic.common.vo.LoginVO;
 
 @Controller

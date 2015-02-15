@@ -11,7 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.kr.qbic.common.controller.CommonAbstarctController;
-import co.kr.qbic.common.util.CommonStringUtil;
+import co.kr.qbic.common.util.string.CommonStringUtil;
 import co.kr.qbic.common.vo.CommonVO;
 import co.kr.qbic.web.board.service.BoardService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;

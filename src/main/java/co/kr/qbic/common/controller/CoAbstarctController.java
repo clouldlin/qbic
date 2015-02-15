@@ -29,7 +29,7 @@ import org.springframework.web.util.WebUtils;
 
 import co.kr.qbic.common.code.CodeService;
 import co.kr.qbic.common.login.LoginSessionManager;
-import co.kr.qbic.common.util.CoStringUtil;
+import co.kr.qbic.common.util.string.CoStringUtil;
 import co.kr.qbic.common.vo.CommonVO;
 import co.kr.qbic.common.vo.LoginVO;
 import egovframework.rte.fdl.property.EgovPropertyService;

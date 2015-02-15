@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.WebUtils;
 
-import co.kr.qbic.common.util.Constants;
+import co.kr.qbic.common.util.string.Constants;
 import co.kr.qbic.common.vo.LoginVO;
 
 @Service(value = "loginSessionManager")

@@ -1,4 +1,4 @@
-package co.kr.qbic.common.util;
+package co.kr.qbic.common.util.string;
 
 import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;

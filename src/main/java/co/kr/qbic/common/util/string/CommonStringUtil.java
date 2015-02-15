@@ -1,4 +1,4 @@
-package co.kr.qbic.common.util;
+package co.kr.qbic.common.util.string;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
