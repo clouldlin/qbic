@@ -10,7 +10,7 @@
 	<h3>공개 자료실</h3>
 	<div class="board_wrap">
 		<div class="board_wrap_left relative">
-			<a href="http://localhost:9999/qbic/board/write.do"><img src="${pageContext.request.contextPath }/images/common/btn/btn_write.gif" alt="글쓰기"></a>
+			<a href="${pageContext.request.contextPath }/common/page.do?page=board/boardUpdate.jsp"><img src="${pageContext.request.contextPath }/images/common/btn/btn_write.gif" alt="글쓰기"></a>
 		</div>
 		<div class="board_wrap_right ">
 			<fieldset class="board_search">
@@ -19,7 +19,7 @@
 					<option value="">전체</option>
 				</select> 
 				<input type="text" title="검색어 입력" class="txt_box3" value="" />
-				<input type="image" src="${pageContext.request.contextPath }/images/common/btn/btn_a_search.gif"	alt="검색" />
+				<input type="image" src="${pageContext.request.contextPath }/images/common/btn/btn_a_search.gif" alt="검색" />
 			</fieldset>
 		</div>
 	</div>

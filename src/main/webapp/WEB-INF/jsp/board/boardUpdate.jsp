@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=utf-8" pageEncoding="utf-8" language="java" %>
 <%@ include file="/WEB-INF/jsp/common/inc/taglib.jsp"%>
+<script type="text/javascript" src="${pageContext.request.contextPath }/js/board/board.js"></script>
 <div class="sec">
     <ul class="content_nav floatR">
         <li><img src="../images/common/home_icon.gif" width="21" height="10" alt="홈" /></li>
@@ -10,10 +11,10 @@
     <table class="board_write_a" summary="기사자료 입력 내용입니다.">
         <caption>공개 자료실 입력</caption>
         <colgroup>
-            <col width="70" />
+            <col width="120" />
             <col />
         </colgroup>
-        <thead>
+                <tbody>
 			<!--             
 			<tr>
                 <th scope="row" class="line_bottom"><label for="name">작성자</label></th>
@@ -22,21 +23,18 @@
             -->
             <tr>
                 <th scope="row"><label for="name1">제목</label></th>
-                <td><input type="text" id="name1" value="" class="txt_box3" style="width:610px;" /></td>
+                <td><input type="text" id="name1" value="" class="txt_box3" style="width:580px;" /></td>
             </tr>
-            <!-- 
             <tr>
-                <th scope="row"><label for="name2">비밀번호</label></th>
-                <td><input type="password" id="name2" value="" class="txt_box3" style="width:100px;" /><span>(4자리 이하)</span></td>
-            </tr> 
-            -->
-        </thead>
-        <tbody>
-            <tr>
+            	<th scope="row"><label for="name2">내용</label></th>
                 <td colspan="2">
                     <textarea name="txt_content" id="txt_content" class="scroll_wrap"> </textarea>
                 </td>
             </tr>
+            <tr>
+                <th scope="row"><label for="name3">첨부파일&nbsp;[<a name="btn_sel_fileAdd" id="btn_sel_fileAdd" href="#JS_ADD" onclick="FnAddFile();">추가</a>]</label></th>
+                <td><table border="0" id="fileArea"></table></td>
+            </tr> 
         </tbody>
     </table>
 

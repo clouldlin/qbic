@@ -57,7 +57,7 @@ table.board_write_a thead td span {font-size:11px;margin-left:10px;}
 table.board_write_a td.txt_center {text-align:center;}
 table.board_write_a thead .line_bottom {border-bottom:1px solid #a8a8a9;} 
 table.board_write_a tbody td {line-height:20px;border-bottom:1px solid #a8a8a9; border-left: 1px solid #d2d2d2; padding:7px 0;}
-table.board_write_a textarea.scroll_wrap {width:95%; height: 292px; padding: 10px; border: 1px solid #a8a8a9; rows:22; wrap:soft; resize:none;}
+table.board_write_a textarea.scroll_wrap {width:580px; height: 292px; border: 1px solid #a8a8a9; rows:22; wrap:soft; resize:none;}
 
 div.btn_wrap_c {margin-top: 10px; text-align: right; }
 div.btn_left { float: left; width: 359px; text-align: left; }

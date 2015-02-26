@@ -33,6 +33,7 @@ var baseUrl		= 	"<%=contextPath%>/";
 <script type="text/javascript" src="<c:url value='/js/common/jquery/jquery.print.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/common/jquery/jquery.validate.min.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/common/jquery/jquery.alphanumeric.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/common/jquery/jquery.MultiFile.js'/>"></script>
 
 <script type="text/javascript" src="<c:url value='/js/comm/common.js'/>"></script>
 
