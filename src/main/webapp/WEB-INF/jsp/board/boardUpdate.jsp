@@ -14,18 +14,22 @@
             <col />
         </colgroup>
         <thead>
-            <tr>
+			<!--             
+			<tr>
                 <th scope="row" class="line_bottom"><label for="name">작성자</label></th>
                 <td class="line_bottom title"><input type="text" id="name" value="" class="txt_box3" style="width:100px;" /></td>
-            </tr>
+            </tr> 
+            -->
             <tr>
                 <th scope="row"><label for="name1">제목</label></th>
                 <td><input type="text" id="name1" value="" class="txt_box3" style="width:610px;" /></td>
             </tr>
+            <!-- 
             <tr>
                 <th scope="row"><label for="name2">비밀번호</label></th>
                 <td><input type="password" id="name2" value="" class="txt_box3" style="width:100px;" /><span>(4자리 이하)</span></td>
-            </tr>
+            </tr> 
+            -->
         </thead>
         <tbody>
             <tr>

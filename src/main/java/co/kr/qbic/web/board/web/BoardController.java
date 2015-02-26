@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -19,6 +21,8 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 @Controller
 @RequestMapping("/board/")
 public class BoardController extends CommonAbstarctController {
+	
+	public static Logger logger = LoggerFactory.getLogger(BoardController.class);
 
 	@Autowired
 	BoardService boardService;
@@ -35,9 +39,10 @@ public class BoardController extends CommonAbstarctController {
 		commonVO.setPageUnit(pageUnit);
 		PaginationInfo paginationInfo  = this.setPaginationInfo(commonVO, commandMap);
 
-		int totCnt=0;
+		int totCnt = 0;
 
 		List<?> list = boardService.boardList(commandMap);
+		// logger.info(list.toString());
 		
 		totCnt= boardService.boardListTotalCount(commandMap);
 		paginationInfo.setTotalRecordCount(totCnt);
@@ -57,17 +62,27 @@ public class BoardController extends CommonAbstarctController {
 	}
 	
 	@RequestMapping("detail.do")
-	public String boardDetail(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception
-	{
+	public String boardDetail(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
+		// logger.info(commandMap.toString());	
+		Map detailView = boardService.detailView(commandMap);
+		
+		logger.info(detailView.toString());	
+		model.addAttribute("searchData"		,commandMap);
+		model.addAttribute("detailView"		,detailView);
 		model.addAttribute("content","board/boardDetail.jsp");
+		
 		return "main.tiles";
 	}
 	
 	@RequestMapping("update.do")
-	public String boardUpdate(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception
-	{
+	public String boardUpdate(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
 		model.addAttribute("content","board/boardUpdate.jsp");
 		return "main.tiles";
 	}
 	
+	@RequestMapping("delete.do")
+	public String delete(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
+		boardService.delete(commandMap);
+		return "redirect:/board/list.do";
+	}
 }

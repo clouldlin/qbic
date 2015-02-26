@@ -38,4 +38,16 @@
 		SELECT COUNT(*) totcnt
 		FROM BOARD 
 	</select>
+	
+	<select id="board_view" parameterClass="java.util.Map" resultMap="clobMap">
+		SELECT t1.SEQ, t1.TITLE, t1.CONTENT, t1.REG_DATE, t1.HIT_COUNT 
+		FROM BOARD t1
+		WHERE t1.SEQ = #seq#
+	</select>
+	
+	<delete id="board_delete" parameterClass="java.util.Map" >
+	  DELETE BOARD t1
+      WHERE t1.SEQ = #seq#
+	</delete>
+	
 </sqlMap>

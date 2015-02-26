@@ -26,4 +26,18 @@ public class BoardServiceImpl implements BoardService {
 		return boardDAO.boardListTotalCount(commandMap);
 	}
 
+	@Override
+	public Map detailView(Map<String, String> commandMap) throws Exception {
+		return boardDAO.detailView(commandMap);
+	}
+
+	@Override
+	public void update(Map<String,String> commandMap) throws Exception {
+		boardDAO.update(commandMap);
+	}
+
+	@Override
+	public void delete(Map<String, String> commandMap) throws Exception {
+		boardDAO.delete(commandMap);
+	}
 }
