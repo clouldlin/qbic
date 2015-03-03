@@ -35,5 +35,5 @@ var baseUrl		= 	"<%=contextPath%>/";
 <script type="text/javascript" src="<c:url value='/js/common/jquery/jquery.alphanumeric.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/common/jquery/jquery.MultiFile.js'/>"></script>
 
-<script type="text/javascript" src="<c:url value='/js/comm/common.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/common/common.js'/>"></script>
 

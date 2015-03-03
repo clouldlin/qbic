@@ -32,7 +32,13 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row"><label for="name3">첨부파일&nbsp;[<a name="btn_sel_fileAdd" id="btn_sel_fileAdd" href="#JS_ADD" onclick="FnAddFile();">추가</a>]</label></th>
+                <th scope="row">
+                	<a id="FILE_ADD"></a>
+	                <label for="name3">
+	                	첨부파일&nbsp;[<a id="btn_fileAdd" href="#FILE_ADD" onclick="fn_addFile();">추가</a>]
+	                	<input type="hidden" id="fileNumbers" name="fileNumbers" value="1" />
+	                </label>
+                </th>
                 <td><table border="0" id="fileArea"></table></td>
             </tr> 
         </tbody>

@@ -59,6 +59,8 @@ table.board_write_a thead .line_bottom {border-bottom:1px solid #a8a8a9;}
 table.board_write_a tbody td {line-height:20px;border-bottom:1px solid #a8a8a9; border-left: 1px solid #d2d2d2; padding:7px 0;}
 table.board_write_a textarea.scroll_wrap {width:580px; height: 292px; border: 1px solid #a8a8a9; rows:22; wrap:soft; resize:none;}
 
+#fileArea td {padding: 7px 10px; text-align:left; border: 1px solid #b1b071;}
+
 div.btn_wrap_c {margin-top: 10px; text-align: right; }
 div.btn_left { float: left; width: 359px; text-align: left; }
 div.btn_right { float: right; width: 360px; text-align: right; }
@@ -84,3 +86,5 @@ div.btn_right_reply {margin-top:15px; float: right; width: 360px; text-align: ri
 .pageNum { padding:0px 3px 0 7px; border-left:1px solid #cbcbcb;}
 .pageNum.first-child { border-left:none; }
 .pageNum strong { color:#ff6600 }
+
+

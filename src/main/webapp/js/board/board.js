@@ -24,6 +24,8 @@
 			$('#boardFrm').attr('action', baseUrl+'board/delete.do');
 			$('#boardFrm').submit();
 		});
+		
+		
 	});
 
 /********************************************************************************
@@ -38,60 +40,54 @@
 		 f.submit();
 	 };
 	 
-	 
-	 
-	 
-	 
-
-	// ### 파일객체 추가
-	function FnAddFile(){
-		// ### 파일 갯수를 설정한다. 화면 스크립트처리용.
-		var curFileCnt = Number($("#fileSu").val());
+ /********************************************************************************
+  * 기      능   	:  파일객체 추가
+  * @param obj	:
+  * @return  	:
+  ********************************************************************************/
+	var fn_addFile = function(){
+		
+		var curFileCnt = Number($("#fileNumbers").val());
 
 		var fileStr = new StringBuffer();
-		fileStr.append("<tr id='TrFile"+curFileCnt+"'> \n");
+		fileStr.append("<tr id='trFile_"+curFileCnt+"'> \n");
 		fileStr.append("	<td height='20'> \n");
-		fileStr.append("		<input type='file' id='ObjFile"+curFileCnt+"' name='ObjFile"+curFileCnt+"' /> \n");
-		fileStr.append("		<span id='SpanBtn"+curFileCnt+"'> \n");
-		fileStr.append("		<a href='#' id='BtnFile"+curFileCnt+"' onclick=FnDeleteFile('TrFile"+curFileCnt+"','"+curFileCnt+"')>[삭제]</a>\n");
+		fileStr.append("		<input type='file' id='file_"+curFileCnt+"' name='file_"+curFileCnt+"' /> \n");
+		fileStr.append("		<span id='spanBtn_"+curFileCnt+"'> \n");
+		fileStr.append("			<a href='#' id='btnFile_"+curFileCnt+"' onclick=fn_deleteFile('trFile_"+curFileCnt+"','"+curFileCnt+"')>[삭제]</a>\n");
 		fileStr.append("		</span> \n");
 		fileStr.append("	</td> \n");
 		fileStr.append("</tr> \n");
 		
-		// ### 파일 객체추가.
 		$("#fileArea").append(fileStr.toString());
 		
-		// ### 현재 파일 갯수를 설정한다.
-		$("#fileSu").val(curFileCnt+1);
-	}
+		$("#fileNumbers").val(curFileCnt+1);
+	};
+	
+ /********************************************************************************
+  * 기      능   	:  파일객체 삭제
+  * @param obj	:
+  * @return  	:
+  ********************************************************************************/	
 
-	// ### 파일객체 삭제
-	function FnDeleteFile(delId, curCnt){
-		// ### 파일 갯수를 설정한다. 화면 스크립트처리용.
-		var curFileCnt = Number($("#fileSu").val());
+	var fn_deleteFile = function(delId, curCnt){ 
+		var curFileCnt = Number($("#fileNumbers").val());
 		
-		// ### 테이블 로우 갯수
-		//var tableRowCnt = $("#fileArea").attr('rows').length;
 		var tableId = document.getElementById("fileArea");		
 		var tableRowCnt= tableId.rows.length;
 		
-		// ### 삭제될 인덱스
 		var delCnt = Number(curCnt);
 
-		// ### 파일 객체 삭제.
 		$("#"+delId).remove();
 		
 		for(var i=(delCnt+1); i<= tableRowCnt; i++){
-			$("#SpanBtn"+(i)).html("<a href='#' id='BtnFile"+(i-1)+"' onclick=FnDeleteFile('TrFile"+(i-1)+"','"+(i-1)+"')>[삭제]</a>");
-			//$("#SpanBtn"+(i)).attr("id"  , "SpanBtn"+(i-1) ); // 파일객체 아이디
-			$("#ObjFile"+(i)).attr("name", "ObjFile"+(i-1) ); // 파일객체 명
-			$("#ObjFile"+(i)).attr("id"  , "ObjFile"+(i-1) ); // 파일객체 아이디
-			$("#TrFile"+(i)).attr("id"  , "TrFile"+(i-1) );   // 로우 아이디
+			$("#spanBtn_"+(i)).html("<a href='#' id='btnFile_"+(i-1)+"' onclick=fn_deleteFile('trFile_"+(i-1)+"','"+(i-1)+"')>[삭제]</a>");
+			$("#spanBtn_"+(i)).attr("id"  , "spanBtn_"+(i-1) ); // 파일객체 아이디
+			$("#file_"+(i)).attr("name", "file_"+(i-1) ); // 파일객체 명
+			$("#file_"+(i)).attr("id"  , "file_"+(i-1) ); // 파일객체 아이디
+			$("#trFile_"+(i)).attr("id"  , "trFile_"+(i-1) );   // 로우 아이디
 		}
 
-		// ### 다음 추가될 파일의 인덱스
-		$("#fileSu").val((curFileCnt-1));
+		$("#fileNumbers").val((curFileCnt-1));
 
-	}
-
-
+	};
