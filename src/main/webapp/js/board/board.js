@@ -25,6 +25,17 @@
 			$('#boardFrm').submit();
 		});
 		
+/********************************************************************************
+* 기      능   	:	게시물 등록
+* @param obj 	: 
+* @return  		: 
+********************************************************************************/
+		$('#boardWrite').on('click',function(){
+			if (!confirm("등록 하시겠습니까?")) return false;
+			$('#boardFrm').attr('action', baseUrl+'board/write.do');
+			$('#boardFrm').submit();
+		});
+		
 		
 	});
 

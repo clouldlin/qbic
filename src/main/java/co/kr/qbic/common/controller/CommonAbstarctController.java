@@ -2,12 +2,15 @@ package co.kr.qbic.common.controller;
 
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import co.kr.qbic.common.code.CodeService;
 import co.kr.qbic.common.vo.CommonVO;
+import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 public class CommonAbstarctController {
@@ -16,6 +19,10 @@ public class CommonAbstarctController {
 
 	@Autowired
 	protected CodeService codeService;
+	
+	 /** EgovPropertyService */
+    @Resource(name = "propertiesService")
+    protected EgovPropertyService propertiesService;
 	
 	/**
 	 * PaginationInfo 에 페이지에 대한 정보를 셋팅해 준다.

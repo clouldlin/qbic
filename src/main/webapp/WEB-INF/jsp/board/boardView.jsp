@@ -54,7 +54,7 @@
         </div>
         <div  class="btn_right">
         	<!-- <a href="#none"><img src="../images/common/btn/btn_reply.jpg" alt="답글달기" /></a> -->
-            <a href="http://localhost:9999/qbic/board/list.do"><img src="../images/common/btn/btn_list.jpg" alt="목록" /></a>
+            <a href="${pageContext.request.contextPath }/board/list.do"><img src="../images/common/btn/btn_list.jpg" alt="목록" /></a>
         </div>
     </div>
 	

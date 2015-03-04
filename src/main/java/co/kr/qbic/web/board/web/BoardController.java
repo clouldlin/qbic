@@ -1,5 +1,7 @@
 package co.kr.qbic.web.board.web;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,8 +13,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.kr.qbic.common.controller.CommonAbstarctController;
+import co.kr.qbic.common.util.file.CoFileMngUtil;
 import co.kr.qbic.common.util.string.CommonStringUtil;
 import co.kr.qbic.common.vo.CommonVO;
 import co.kr.qbic.web.board.service.BoardService;
@@ -26,7 +31,7 @@ public class BoardController extends CommonAbstarctController {
 
 	@Autowired
 	BoardService boardService;
-
+	
 	@RequestMapping("list.do")
 	public String boardList(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
 		
@@ -57,8 +62,25 @@ public class BoardController extends CommonAbstarctController {
 	
 	@RequestMapping("write.do")
 	public String boardWrite(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
-		model.addAttribute("content","board/boardUpdate.jsp");
-		return "main.tiles";
+		
+		/* 파일 업로드 */
+		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+		
+    	Iterator fileIter = multiRequest.getFileNames();
+    	Map<String,String> map = new HashMap<String,String>();
+    	while (fileIter.hasNext()) {
+    		MultipartFile mFile = multiRequest.getFile((String)fileIter.next());
+
+    		if (mFile.getSize() > 0) {
+
+    			map.clear();
+    			map = CoFileMngUtil.uploadFile(mFile);
+    		}
+    	}
+
+		logger.info(propertiesService.getString("Globals.fileStorePath"));
+		logger.info(commandMap.toString());
+		return "redirect:/board/list.do";
 	}
 	
 	@RequestMapping("detail.do")
@@ -69,7 +91,7 @@ public class BoardController extends CommonAbstarctController {
 		logger.info(detailView.toString());	
 		model.addAttribute("searchData"		,commandMap);
 		model.addAttribute("detailView"		,detailView);
-		model.addAttribute("content","board/boardDetail.jsp");
+		model.addAttribute("content","board/boardView.jsp");
 		
 		return "main.tiles";
 	}
