@@ -1,7 +1,6 @@
 package co.kr.qbic.common;
 
-public class Constants
-{
+public class Constants {
 	public static final String userSession = "co.kr.qbic";				// SESSION ID 값
 	public static final String projectName = "qbic";					// Project Name
 
@@ -16,5 +15,5 @@ public class Constants
 	//파일경로
 	public static final String FILE_PATH = "filePath";
 	//회원복호화 키
-	public static final String ENC_KEY = "1234enckey201201";
+	public static final String ENC_KEY = "1234enckey201502";
 }

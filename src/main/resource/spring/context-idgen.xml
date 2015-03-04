@@ -8,7 +8,7 @@
     <bean name="egovFileIdGnrService" class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService" destroy-method="destroy">
         <property name="dataSource" ref="dataSource" />
         <property name="strategy" ref="fileStrategy" />
-        <property name="blockSize"  value="10"/>
+        <property name="blockSize"  value="1"/> <!-- 시퀀스 증가크기 -->
         <property name="table"      value="IDS"/>
         <property name="tableName"  value="FILE_ID"/>
     </bean>

@@ -20,7 +20,6 @@ public class CommonAbstarctController {
 	@Autowired
 	protected CodeService codeService;
 	
-	 /** EgovPropertyService */
     @Resource(name = "propertiesService")
     protected EgovPropertyService propertiesService;
 	

@@ -27,5 +27,28 @@ public class CommonStringUtil {
     public static boolean isEmpty(String str) {
         return str == null || str.length() == 0;
     }
+    
+    /**
+     * 문자열 비교
+     *
+     * @param str
+     * @param str2
+     * @return String
+     * @exception Exception
+     * @see
+     */
+    public static boolean equals(String str , String str2) {
+
+    	//같으면 true
+    	if(str != null && str.equals(str2)){
+    		return true;
+
+    	//아니면 false
+    	}else{
+    		return false;
+    	}
+    }
+    
+    
 
 }

@@ -16,245 +16,65 @@ import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.kr.qbic.common.Constants;
-import egovframework.rte.fdl.property.EgovPropertyService;
+import co.kr.qbic.common.util.string.CoStringUtil;
+import co.kr.qbic.common.util.web.CommonWebUtil;
 
-public class CoFileMngUtil {
+public class CommonFileUtil {
 
     public static final int BUFF_SIZE = 2048;
 
-	/** EgovPropertyService */
-    @Resource(name = "propertiesService")
-    protected EgovPropertyService propertiesService;
+    public static Logger logger = LoggerFactory.getLogger(CommonFileUtil.class);
 
-    private static final Logger LOG = Logger.getLogger(CoFileMngUtil.class);
-
-    /**
-     * 첨부파일을 서버에 저장한다.
-     *
-     * @param file
-     * @param newName
-     * @param stordFilePath
-     * @throws Exception
-     */
-    protected void writeUploadedFile(MultipartFile file, String newName, String stordFilePath) throws Exception {
-	InputStream stream = null;
-	OutputStream bos = null;
-
-		try {
-		    stream = file.getInputStream();
-		    File cFile = new File(stordFilePath);
-
-		    if (!cFile.isDirectory()) {
-			boolean _flag = cFile.mkdir();
-			if (!_flag) {
-			    throw new IOException("Directory creation Failed ");
-			}
-		    }
-
-		    bos = new FileOutputStream(stordFilePath + File.separator + newName);
-
-		    int bytesRead = 0;
-		    byte[] buffer = new byte[BUFF_SIZE];
-
-		    //while ((bytesRead = stream.read(buffer, 0, BUFF_SIZE)) != -1) {
-			//bos.write(buffer, 0, bytesRead);
-		    //}
-		    bytesRead = stream.read(buffer, 0, BUFF_SIZE);
-		    while (bytesRead != -1) {
-				bos.write(buffer, 0, bytesRead);
-				bytesRead = stream.read(buffer, 0, BUFF_SIZE);
-		    }
-
-		} catch (Exception e) {
-		    //e.printStackTrace();
-		    LOG.error("IGNORE:", e);	// 2011.10.10 보안점검 후속조치
-		} finally {
-		    if (bos != null) {
-				try {
-				    bos.close();
-				} catch (Exception ignore) {
-				    LOG.debug("IGNORED: " + ignore.getMessage());
-				}
-		    }
-		    if (stream != null) {
-				try {
-				    stream.close();
-				} catch (Exception ignore) {
-				    LOG.debug("IGNORED: " + ignore.getMessage());
-				}
-		    }
-		}
-    }
-
-    /**
-     * 서버의 파일을 다운로드한다.
-     *
-     * @param request
-     * @param response
-     * @return
-     * @throws Exception
-     */
-    public static Map<String, String> downFile(HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-	String downFileName = "";
-	String orgFileName  = "";
-
-	//다운로드 이력을 등록 하기 위한 Map
-	Map<String, String> downHist = new HashMap<String, String>();
-	/*
-	if ((String)request.getAttribute("downFile") == null) {
-	    downFileName = "";
-	} else {
-	    downFileName = (String)request.getAttribute("downFile");
-	}
-
-	if ((String)request.getAttribute("orgFileName") == null) {
-	    orgFileName = "";
-	} else {
-	    orgFileName = (String)request.getAttribute("orgFileName");
-	}
-	*/
-	// PMD 오류로 인한 메소드 처리 명진 20130620
-	downFileName = getFileName(request , "downFile");
-	orgFileName  = getFileName(request , "orgFileName");
-	orgFileName  = orgFileName.replaceAll("\r", "").replaceAll("\n", "");
-
-	File file = new File(CoWebUtil.filePathBlackList(downFileName));
-
-	if (!file.exists()) {
-	    throw new FileNotFoundException(downFileName);
-	}
-
-	if (!file.isFile()) {
-	    throw new FileNotFoundException(downFileName);
-	}
-
-	byte[] b = new byte[BUFF_SIZE]; //buffer size 2K.
-
-	response.setContentType("application/x-msdownload");
-	setDisposition(orgFileName, request, response);
-	//response.setHeader("Content-Disposition:", "attachment; filename=" + new String(orgFileName.getBytes(), "UTF-8"));
-	response.setHeader("Content-Transfer-Encoding", "binary");
-	response.setHeader("Pragma", "no-cache");
-	response.setHeader("Expires", "0");
-
-	BufferedInputStream fin   = null;
-	BufferedOutputStream outs = null;
-
-	//다운로드 시작 시간
-	String stDtm = getTimeStamp();
-	downHist.put("stDtm", stDtm);
-	try {
-		fin 	 = new BufferedInputStream(new FileInputStream(file));
-	    outs 	 = new BufferedOutputStream(response.getOutputStream());
-	    int read = 0;
-
-	    read = fin.read(b);
-	    while (read != -1) {
-		    outs.write(b, 0, read);
-		    read = fin.read(b);
-		}
-
-
-	}catch (Exception e) {
-
-		//다운로드 상태
-		downHist.put("jobgbId", "09");
-
-	} finally {
-
-		// 다운로드 종료 시간
-		String endDtm = getTimeStamp();
-		downHist.put("endDtm", endDtm);
-		downHist.put("jobgbId", "03");
-
-		if (outs != null) {
-			try {
-			    outs.close();
-			} catch (Exception ignore) {
-			    LOG.debug("IGNORED: " + ignore.getMessage());
-			}
-		    }
-		    if (fin != null) {
-				try {
-				    fin.close();
-				} catch (Exception ignore) {
-				    LOG.debug("IGNORED: " + ignore.getMessage());
-				}
-		    }
-		}
-	return downHist;
-    }
-
-    public static String getFileName(HttpServletRequest request, String getAttrName){
-
-    	String FileName = "";
-
-    	if ((String)request.getAttribute(getAttrName) == null) {
-    		FileName = "";
-    	} else {
-    		FileName = (String)request.getAttribute(getAttrName);
-    	}
-
-    	return FileName;
-    }
     /**
      * 첨부로 등록된 파일을 서버에 업로드한다.
      *
      * @param file
+     * @param upload file path
      * @return
      * @throws Exception
      */
-    public static Map<String, String> uploadFile(MultipartFile file) throws Exception {
+    public static Map<String, String> uploadFile(MultipartFile file, String fileStorePath) throws Exception {
 
-	HashMap<String, String> map = new HashMap<String, String>();
-	//Write File 이후 Move File????
-	//newName 은 Naming Convention에 의해서 생성
-	GregorianCalendar today = new GregorianCalendar ( );
-
-	String CURYY 	= (today.get ( today.YEAR )) 		 + "";
-	String CURMM 	= String.format("%02d", (today.get ( today.MONTH ) + 1)) 	 + "";
-	String CURDD 	= (today.get ( today.DAY_OF_MONTH )) + "";
-
-	String newName 		 = "";
-	String stordFilePath = CoProperties.getProperty("Globals.fileStorePath")+"/"+CURYY+"/"+CURMM+"/"+CURDD+"/";
-
-	Logger.getLogger(CoFileMngUtil.class).debug("::::::::::::::::::stordFilePath:::::::::::::::::::" + stordFilePath);
-
-	String orginFileName = file.getOriginalFilename();
-
-	Logger.getLogger(CoFileMngUtil.class).debug(":::::::::::::::::::orginFileName::::::::::::::::::" + stordFilePath);
-
-	int index = orginFileName.lastIndexOf(".");
-	//String fileName = orginFileName.substring(0, _index);
-	String fileExt = orginFileName.substring(index + 1);
-	long size = file.getSize();
-
-	newName 		= getTimeStamp() + "." + fileExt;
-	writeFile(file, newName, stordFilePath);
-	//storedFilePath는 지정
-	map.put(Constants.ORIGIN_FILE_NM, orginFileName);
-	map.put(Constants.UPLOAD_FILE_NM, newName);
-	map.put(Constants.FILE_EXT, fileExt);
-	map.put(Constants.FILE_PATH, stordFilePath);
-	map.put(Constants.FILE_SIZE, String.valueOf(size));
-
-	return map;
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		GregorianCalendar today = new GregorianCalendar();
+	
+		String CUR_YY 	= (today.get ( today.YEAR )) 		 + "";
+		String CUR_MM 	= String.format("%02d", (today.get ( today.MONTH ) + 1)) 	 + "";
+		String CUR_DD 	= (today.get ( today.DAY_OF_MONTH )) + "";
+	
+		String newName  = "";
+		String filePath = fileStorePath+"/"+CUR_YY+"/"+CUR_MM+"/"+CUR_DD+"/";
+		String orginFileName = file.getOriginalFilename();
+	
+		int index = orginFileName.lastIndexOf(".");
+		String fileExt = orginFileName.substring(index + 1);
+		long size = file.getSize();
+	
+		newName = getTimeStamp() + "." + fileExt;
+		writeFile(file, newName, filePath);
+		
+		map.put(Constants.ORIGIN_FILE_NM, orginFileName);
+		map.put(Constants.UPLOAD_FILE_NM, newName);
+		map.put(Constants.FILE_EXT, fileExt);
+		map.put(Constants.FILE_PATH, filePath);
+		map.put(Constants.FILE_SIZE, String.valueOf(size));
+	
+		return map;
     }
 
     /**
@@ -272,40 +92,36 @@ public class CoFileMngUtil {
 	try {
 	    stream 		= file.getInputStream();
 
-	    Logger.getLogger(CoFileMngUtil.class).debug(":::::::::::::::::::writeFile stordFilePath::::::::::::::::::" + stordFilePath);
-	    File cFile 	= new File(CoWebUtil.filePathBlackList(stordFilePath));
-	    Logger.getLogger(CoFileMngUtil.class).debug(":::::::::::::::::::writeFile filePathBlackList::::::::::::::::::" + CoWebUtil.filePathBlackList(stordFilePath));
-	    //cFile.setReadable(true);
-	    //cFile.setExecutable(true);
-	    //cFile.setWritable(true);
+	    File cFile 	= new File(CommonWebUtil.filePathBlackList(stordFilePath));
 
 	    /* 디렉토리 없는경우 생성.*/
     	if(!cFile.getParentFile().exists()){
     		cFile.getParentFile().mkdirs();
 
-	        //해당 첨부파일  밑에 모든 권한을 셋팅해 준다.. 755
-	    	/*String cmd = "chmod -R 755 "+cFile;
-	    	boolean cmdFlag = CoCommonUtil.processRuntime(cmd);
-	    	if(!cmdFlag){
-	    		CoCommonUtil.processUnixRuntime(cmd);
-	    	}*/
-
+	        // 해당 첨부파일  밑에 모든 권한을 셋팅해 준다.. 755
+	    	/*
+	    	    String cmd = "chmod -R 755 "+cFile;
+		    	boolean cmdFlag = CoCommonUtil.processRuntime(cmd);
+		    	if(!cmdFlag){
+		    		CoCommonUtil.processUnixRuntime(cmd);
+		    	}
+	    	*/
     	}
 
 	    if (!cFile.isDirectory()){
 	    	cFile.mkdir();
 
 	        //해당 첨부파일  밑에 모든 권한을 셋팅해 준다.. 755
-	    	/*String cmd = "chmod -R 755 "+cFile;
-	    	boolean cmdFlag = CoCommonUtil.processRuntime(cmd);
-	    	if(!cmdFlag){
-	    		CoCommonUtil.processUnixRuntime(cmd);
-	    	}*/
+	    	/*
+	    		String cmd = "chmod -R 755 "+cFile;
+	    		boolean cmdFlag = CoCommonUtil.processRuntime(cmd);
+	    		if(!cmdFlag){
+	    			CoCommonUtil.processUnixRuntime(cmd);
+	    		}
+	    	*/
 	    }
 
-	    Logger.getLogger(CoFileMngUtil.class).debug(":::::::::::::::::::writeFile filePathBlackList::::::::::::::::::" + CoWebUtil.filePathBlackList(stordFilePath + File.separator + newName));
-
-	    bos = new FileOutputStream(CoWebUtil.filePathBlackList(stordFilePath + File.separator + newName));
+	    bos = new FileOutputStream(CommonWebUtil.filePathBlackList(stordFilePath + File.separator + newName));
 
 	    int bytesRead = 0;
 	    byte[] buffer = new byte[BUFF_SIZE];
@@ -316,22 +132,17 @@ public class CoFileMngUtil {
 	    	bytesRead = stream.read(buffer, 0, BUFF_SIZE);
 	    }
 	} catch (Exception e) {
-	    //e.printStackTrace();
-	    //throw new RuntimeException(e);	// 보안점검 후속조치
-		Logger.getLogger(CoFileMngUtil.class).debug("IGNORED: " + e.getMessage());
 	} finally {
 	    if (bos != null) {
 		try {
 		    bos.close();
 		} catch (Exception ignore) {
-		    Logger.getLogger(CoFileMngUtil.class).debug("IGNORED: " + ignore.getMessage());
 		}
 	    }
 	    if (stream != null) {
 		try {
 		    stream.close();
 		} catch (Exception ignore) {
-		    Logger.getLogger(CoFileMngUtil.class).debug("IGNORED: " + ignore.getMessage());
 		}
 	    }
 	}
@@ -411,7 +222,6 @@ public class CoFileMngUtil {
 				    	downHist.put("jobgbId", "03");
 
 				    } catch (Exception ignore) {
-				    	Logger.getLogger(CoFileMngUtil.class).debug("IGNORED: " + ignore.getMessage());
 				    }
 				}
 		    }
@@ -442,24 +252,20 @@ public class CoFileMngUtil {
      */
     private static String getTimeStamp() {
 
-	String rtnStr = null;
-
-	// 문자열로 변환하기 위한 패턴 설정(년도-월-일 시:분:초:초(자정이후 초))
-	String pattern = "yyyyMMddHHmmssSSS";
-
-	try {
-	    SimpleDateFormat sdfCurrent = new SimpleDateFormat(pattern, Locale.KOREA);
-	    Timestamp ts = new Timestamp(System.currentTimeMillis());
-
-	    rtnStr = sdfCurrent.format(ts.getTime());
-	} catch (Exception e) {
-	    //e.printStackTrace();
-
-	    //throw new RuntimeException(e);	// 보안점검 후속조치
-	    LOG.debug("IGNORED: " + e.getMessage());
-	}
-
-	return rtnStr;
+		String rtnStr = null;
+	
+		// 문자열로 변환하기 위한 패턴 설정(년도-월-일 시:분:초:초(자정이후 초))
+		String pattern = "yyyyMMddHHmmssSSS";
+	
+		try {
+		    SimpleDateFormat sdfCurrent = new SimpleDateFormat(pattern, Locale.KOREA);
+		    Timestamp ts = new Timestamp(System.currentTimeMillis());
+	
+		    rtnStr = sdfCurrent.format(ts.getTime());
+		} catch (Exception e) {
+		}
+	
+		return rtnStr;
     }
 
 
@@ -528,37 +334,6 @@ public class CoFileMngUtil {
     		return false;
     	}
     }
-
-    /**
-     * List 파일 삭제하기
-     * @param list 맵 타입 리스트
-     * @return mapKey 맵 key
-     * @throws Exception
-     */
-    public static int listRemoveFile(List<Map> list,String[] mapKey){
-    	LOG.debug(":::::::::::::::listRemoveFile1::::::::::::::::");
-    	int fileDelCt = 0;
-    	   if(!list.isEmpty()){
-    			for(int i = 0; i < list.size(); i++){
-    				Map map = list.get(i);
-    				for(int j = 0; j < mapKey.length; j++){
-
-    					// PMD 오류로 인한 메소드 처리 명진 20130620
-	    				File sFile = CoCommonUtil.getObjFile(map , mapKey[j]);
-    					//File sFile = new File(((String) map.get(mapKey[j])));
-
-    					if(sFile.exists())
-	    		    	{
-	    		    		sFile.delete();
-	    		    		fileDelCt += 1;
-	    		    	}
-    				}
-    			}
-    		}
-    	   LOG.debug(":::::::::::::::listRemoveFile1::::::::::::::::");
-		return fileDelCt;
-    }
-
 
     /**
      * 디렉토리 및 파일 삭제를 위한 재귀함수.
@@ -654,8 +429,6 @@ public class CoFileMngUtil {
                 break;
             }else*/
 
-            LOG.debug("upSize =====================> :" + upSize);
-            LOG.debug("sizeLimit===================> :" + sizeLimit);
             sizeHap = sizeHap+upSize;
             if((ext!= null && !ext.equals("")) && upSize > sizeLimit){
                 result = 2;
@@ -712,7 +485,6 @@ public class CoFileMngUtil {
      * @return 체크결과(0:정상 1:확장자문제 2:사이즈문제)
      */
     public static Integer checkFileExtention(HttpServletRequest request, long size, String extentions){
-    	LOG.debug("size=" + size + " extentions=" + extentions);
         return checkFileExtention(request, "N", size, extentions);
     }
 
@@ -740,21 +512,16 @@ public class CoFileMngUtil {
     @SuppressWarnings("unchecked")
     public static Integer checkFileExtention(HttpServletRequest request, String checkSe, long size, String extentions){
 
-    	LOG.debug("checkSe=" + checkSe);
         int result = 0;
 
-        LOG.debug("result=" + result);
         MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
-        LOG.debug("multiRequest=" + multiRequest);
 
         Iterator<Entry<String, MultipartFile>> itr =  multiRequest.getFileMap().entrySet().iterator();
 
-        LOG.debug("itr=" + itr);
 
         // 파일정보 추출
         while (itr.hasNext()) {
             MultipartFile file = itr.next().getValue();
-            LOG.debug("  file=" + file);
             Integer rv = checkFileExtention(file.getOriginalFilename(), checkSe, file.getSize(), size, extentions);
 
             if(rv>0){
@@ -780,11 +547,6 @@ public class CoFileMngUtil {
 
     	String FileExtentions = extentions;
     	long   FileSize = size;
-    	LOG.debug("originalFilename=" + originalFilename
-                + " checkSe=" + checkSe
-                + " fileSize=" + fileSize
-                + " size=" + size
-                + " extentions=" + FileExtentions);
 
         Integer result = 0;
 

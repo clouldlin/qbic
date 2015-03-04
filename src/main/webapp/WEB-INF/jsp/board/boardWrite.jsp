@@ -9,7 +9,7 @@
     </ul>
     <h3>공개 자료실</h3>
     
-    <form name="boardFrm" id="boardFrm" method="post" action="" enctype="multipart/form-data">
+    <form name="boardFrm" id="boardFrm" method="post" enctype="multipart/form-data">
 	    <table class="board_write_a" summary="기사자료 입력 내용입니다.">
 	        <caption>공개 자료실 입력</caption>
 	        <colgroup>

@@ -16,26 +16,6 @@ import org.springframework.web.util.WebUtils;
 
 import co.kr.qbic.common.util.string.CoStringUtil;
 
-//import dbcsc.cms.co.web.CmsCoCategoryExcelView;
-
-
-
-/**
-*
-* @Class Name   :CoWebUtil.java
-* @Description  :CoWebUtil.java
-* @Modification :개정이력(Modification Information)
-* @
-* @  수정일            수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2013. 11. 18.		정용진		최초생성
-* @author IIT
-* @since 2013. 11. 18.
-* @version 1.0
-* @see
-*
-* Copyright (C) by IIT All right reserved.
- */
 public class CommonWebUtil {
 
 	protected static final Logger LOGGER = Logger.getLogger(CommonWebUtil.class);

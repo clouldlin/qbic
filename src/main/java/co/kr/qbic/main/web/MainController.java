@@ -14,17 +14,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import co.kr.qbic.common.controller.CoAbstarctController;
-import co.kr.qbic.common.util.properties.CommonProperties;
-import co.kr.qbic.common.util.string.CoStringUtil;
-import co.kr.qbic.common.vo.CommonVO;
 import co.kr.qbic.main.service.MainService;
-import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 @RequestMapping("/main/")
 public class MainController extends CoAbstarctController {
 	
-	final static Logger logger = LoggerFactory.getLogger(CommonProperties.class);
+	public final static Logger logger = LoggerFactory.getLogger(MainController.class);
 
 	@Resource(name = "mainService")
 	MainService mainService;

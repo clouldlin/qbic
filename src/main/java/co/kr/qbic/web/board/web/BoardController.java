@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -16,11 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import co.kr.qbic.common.Constants;
 import co.kr.qbic.common.controller.CommonAbstarctController;
-import co.kr.qbic.common.util.file.CoFileMngUtil;
+import co.kr.qbic.common.util.file.CommonFileUtil;
 import co.kr.qbic.common.util.string.CommonStringUtil;
 import co.kr.qbic.common.vo.CommonVO;
 import co.kr.qbic.web.board.service.BoardService;
+import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
@@ -31,6 +34,10 @@ public class BoardController extends CommonAbstarctController {
 
 	@Autowired
 	BoardService boardService;
+	
+    /** ID Generation Service */
+	@Resource(name = "egovFileIdGnrService")
+	private EgovIdGnrService egovFileIdGnrService;
 	
 	@RequestMapping("list.do")
 	public String boardList(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
@@ -66,20 +73,30 @@ public class BoardController extends CommonAbstarctController {
 		/* 파일 업로드 */
 		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
 		
-    	Iterator fileIter = multiRequest.getFileNames();
+		String docPath = "";
+        String fileName = "";
+        String orgName = "";
+
+		Iterator fileIter = multiRequest.getFileNames();
     	Map<String,String> map = new HashMap<String,String>();
+    	
+    	logger.info(egovFileIdGnrService.getNextStringId());
+    	
     	while (fileIter.hasNext()) {
     		MultipartFile mFile = multiRequest.getFile((String)fileIter.next());
 
     		if (mFile.getSize() > 0) {
-
     			map.clear();
-    			map = CoFileMngUtil.uploadFile(mFile);
+    			map = CommonFileUtil.uploadFile(mFile, propertiesService.getString("Globals.fileStorePath"));
+    			
+    			docPath = map.get(Constants.FILE_PATH);			// 파일경로 		  ex) C:/Dropbox/files/qbic/upload/2015/03/4/
+    			fileName = map.get(Constants.UPLOAD_FILE_NM);	// 업로드된 파일명    ex) 20150304162205055.hwp 
+    			orgName = map.get(Constants.ORIGIN_FILE_NM);	// 실제 파일명		  ex) 파일철라벨.hwp 
     		}
     	}
-
-		logger.info(propertiesService.getString("Globals.fileStorePath"));
+    	
 		logger.info(commandMap.toString());
+		
 		return "redirect:/board/list.do";
 	}
 	
