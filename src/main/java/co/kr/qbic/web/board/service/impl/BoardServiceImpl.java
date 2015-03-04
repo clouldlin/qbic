@@ -40,4 +40,9 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(Map<String, String> commandMap) throws Exception {
 		boardDAO.delete(commandMap);
 	}
+
+	@Override
+	public void insert(Map<String, String> commandMap) throws Exception {
+		boardDAO.delete(commandMap);
+	}
 }

@@ -2,22 +2,6 @@ package co.kr.qbic.common.vo;
 
 import java.io.Serializable;
 
-/**
-*
-* @Class Name   :LoginVO.java
-* @Description  :LoginVO.java
-* @Modification :개정이력(Modification Information)
-* @
-* @  수정일            수정자              수정내용
-* @ ---------   ---------   -------------------------------
-* @ 2013. 11. 20.		정용진		최초생성
-* @author IIT
-* @since 2013. 11. 20.
-* @version 1.0
-* @see
-*
-* Copyright (C) by IIT All right reserved.
- */
 public class LoginVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;

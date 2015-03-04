@@ -18,16 +18,20 @@ public class BoardDAO extends EgovAbstractDAO {
 		return (Integer) getSqlMapClientTemplate().queryForObject("BoardSQL001.boardListTotalCount",commandMap);
 	}
 
-	public Map detailView(Map<String,String> commandMap) throws Exception{
+	public Map detailView(Map<String,String> commandMap) throws Exception {
 		return (Map) selectByPk("BoardSQL001.board_view",commandMap);
 	}
 
-	public void update(Map<String, String> commandMap) throws Exception{
+	public void update(Map<String, String> commandMap) throws Exception {
 		update("BoardSQL001.update",commandMap);
 	}
 
 	public void delete(Map<String, String> commandMap) throws Exception{
 		delete("BoardSQL001.board_delete",commandMap);
+	}
+	
+	public void insert(Map<String,String> commandMap) throws Exception {
+		insert("BoardSQL001.insert",commandMap);
 	}
 
 }

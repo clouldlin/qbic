@@ -35,6 +35,7 @@
 
 	<bean id="BeanNameResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0"/>
 	
+	<!-- jsonView Configuration -->
 	<bean id="jsonView"	class="co.kr.qbic.common.view.json.MappingJacksonJsonView">
 		<property name="contentType" value="application/json;charset=UTF-8"/>
 	</bean>

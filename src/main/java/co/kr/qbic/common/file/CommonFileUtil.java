@@ -1,4 +1,4 @@
-package co.kr.qbic.common.util.file;
+package co.kr.qbic.common.file;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -40,7 +40,7 @@ public class CommonFileUtil {
     public static Logger logger = LoggerFactory.getLogger(CommonFileUtil.class);
 
     /**
-     * 첨부로 등록된 파일을 서버에 업로드한다.
+     * 첨부파일을 서버에 업로드한다.
      *
      * @param file
      * @param upload file path

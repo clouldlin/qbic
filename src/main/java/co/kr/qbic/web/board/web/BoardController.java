@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.kr.qbic.common.Constants;
 import co.kr.qbic.common.controller.CommonAbstarctController;
-import co.kr.qbic.common.util.file.CommonFileUtil;
+import co.kr.qbic.common.file.CommonFileUtil;
 import co.kr.qbic.common.util.string.CommonStringUtil;
 import co.kr.qbic.common.vo.CommonVO;
 import co.kr.qbic.web.board.service.BoardService;
@@ -80,7 +80,9 @@ public class BoardController extends CommonAbstarctController {
 		Iterator fileIter = multiRequest.getFileNames();
     	Map<String,String> map = new HashMap<String,String>();
     	
-    	logger.info(egovFileIdGnrService.getNextStringId());
+    	// logger.info(egovFileIdGnrService.getNextStringId());
+    	
+    	boardService.insert(commandMap);
     	
     	while (fileIter.hasNext()) {
     		MultipartFile mFile = multiRequest.getFile((String)fileIter.next());
@@ -90,9 +92,12 @@ public class BoardController extends CommonAbstarctController {
     			map = CommonFileUtil.uploadFile(mFile, propertiesService.getString("Globals.fileStorePath"));
     			
     			docPath = map.get(Constants.FILE_PATH);			// 파일경로 		  ex) C:/Dropbox/files/qbic/upload/2015/03/4/
-    			fileName = map.get(Constants.UPLOAD_FILE_NM);	// 업로드된 파일명    ex) 20150304162205055.hwp 
+    			fileName = map.get(Constants.UPLOAD_FILE_NM);	// 업로드 파일명      ex) 20150304162205055.hwp 
     			orgName = map.get(Constants.ORIGIN_FILE_NM);	// 실제 파일명		  ex) 파일철라벨.hwp 
+    			
+    			// commandMap.put(key, egovFileIdGnrService.getNextStringId());
     		}
+    		
     	}
     	
 		logger.info(commandMap.toString());
