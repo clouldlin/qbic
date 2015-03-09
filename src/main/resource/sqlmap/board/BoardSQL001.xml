@@ -13,7 +13,7 @@
 		<result property="hit_count" column="HIT_COUNT"/>	
 	</resultMap>
 
-	<select id="boardList" parameterClass="java.util.Map" resultMap="clobMap">
+	<select id="list" parameterClass="java.util.Map" resultMap="clobMap">
 		SELECT *
 			FROM
 				(SELECT T1.*,

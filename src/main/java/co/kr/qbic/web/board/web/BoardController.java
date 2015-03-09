@@ -53,10 +53,10 @@ public class BoardController extends CommonAbstarctController {
 
 		int totCnt = 0;
 
-		List<?> list = boardService.boardList(commandMap);
+		List<?> list = boardService.list(commandMap);
 		// logger.info(list.toString());
 		
-		totCnt= boardService.boardListTotalCount(commandMap);
+		totCnt= boardService.listTotalCount(commandMap);
 		paginationInfo.setTotalRecordCount(totCnt);
 		
 		model.addAttribute("boardList", list);
@@ -108,7 +108,7 @@ public class BoardController extends CommonAbstarctController {
 	@RequestMapping("detail.do")
 	public String boardDetail(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
 		// logger.info(commandMap.toString());	
-		Map detailView = boardService.detailView(commandMap);
+		Map detailView = boardService.view(commandMap);
 		
 		logger.info(detailView.toString());	
 		model.addAttribute("searchData"		,commandMap);

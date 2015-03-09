@@ -10,16 +10,16 @@ import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 @Repository("boardDAO")
 public class BoardDAO extends EgovAbstractDAO {
 
-	public List<?> boardList(Map<String, String> commandMap) throws Exception {
-		return list("BoardSQL001.boardList", commandMap);
+	public List<?> list(Map<String, String> commandMap) throws Exception {
+		return list("BoardSQL001.list", commandMap);
 	}
 
-	public int boardListTotalCount(Map<String, String> commandMap) throws Exception {
+	public int listTotalCount(Map<String, String> commandMap) throws Exception {
 		return (Integer) getSqlMapClientTemplate().queryForObject("BoardSQL001.boardListTotalCount",commandMap);
 	}
 
-	public Map detailView(Map<String,String> commandMap) throws Exception {
-		return (Map) selectByPk("BoardSQL001.board_view",commandMap);
+	public Map view(Map<String,String> commandMap) throws Exception {
+		return (Map) selectByPk("BoardSQL001.view",commandMap);
 	}
 
 	public void update(Map<String, String> commandMap) throws Exception {
@@ -27,7 +27,7 @@ public class BoardDAO extends EgovAbstractDAO {
 	}
 
 	public void delete(Map<String, String> commandMap) throws Exception{
-		delete("BoardSQL001.board_delete",commandMap);
+		delete("BoardSQL001.delete",commandMap);
 	}
 	
 	public void insert(Map<String,String> commandMap) throws Exception {

@@ -5,11 +5,11 @@ import java.util.Map;
 
 public interface BoardService {
 
-	public List<?> boardList(Map<String, String> commandMap) throws Exception;
+	public List<?> list(Map<String, String> commandMap) throws Exception;
 
-	public Integer boardListTotalCount(Map<String, String> commandMap) throws Exception;
+	public Integer listTotalCount(Map<String, String> commandMap) throws Exception;
 
-	public Map detailView(Map<String, String> commandMap) throws Exception;
+	public Map view(Map<String, String> commandMap) throws Exception;
 
 	public void update(Map<String, String> commandMap) throws Exception;
 	

@@ -18,18 +18,18 @@ public class BoardServiceImpl extends AbstractServiceImpl implements BoardServic
 	BoardDAO boardDAO;
 
 	@Override
-	public List<?> boardList(Map<String, String> commandMap) throws Exception {
-		return boardDAO.boardList(commandMap);
+	public List<?> list(Map<String, String> commandMap) throws Exception {
+		return boardDAO.list(commandMap);
 	}
 
 	@Override
-	public Integer boardListTotalCount(Map<String, String> commandMap) throws Exception {
-		return boardDAO.boardListTotalCount(commandMap);
+	public Integer listTotalCount(Map<String, String> commandMap) throws Exception {
+		return boardDAO.listTotalCount(commandMap);
 	}
 
 	@Override
-	public Map detailView(Map<String, String> commandMap) throws Exception {
-		return boardDAO.detailView(commandMap);
+	public Map view(Map<String, String> commandMap) throws Exception {
+		return boardDAO.view(commandMap);
 	}
 
 	@Override
@@ -44,6 +44,6 @@ public class BoardServiceImpl extends AbstractServiceImpl implements BoardServic
 
 	@Override
 	public void insert(Map<String, String> commandMap) throws Exception {
-		boardDAO.delete(commandMap);
+		boardDAO.insert(commandMap);
 	}
 }
