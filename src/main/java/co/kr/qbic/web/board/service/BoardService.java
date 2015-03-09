@@ -13,6 +13,8 @@ public interface BoardService {
 
 	public void update(Map<String, String> commandMap) throws Exception;
 	
+	public void updateHitCount(Map<String, String> commandMap) throws Exception;
+	
 	public void delete(Map<String, String> commandMap) throws Exception;
 	
 	public void insert(Map<String,String> commandMap) throws Exception;

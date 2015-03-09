@@ -11,6 +11,7 @@
 		<result property="content" column="CONTENT" jdbcType="CLOB" javaType="java.lang.String"/>
 		<result property="reg_date" column="REG_DATE"/>	
 		<result property="hit_count" column="HIT_COUNT"/>	
+		<result property="file_id" column="FILE_ID"/>
 	</resultMap>
 
 	<select id="list" parameterClass="java.util.Map" resultMap="clobMap">
@@ -23,7 +24,8 @@
 						       T1.TITLE,
 						       T1.CONTENT,
 						       T1.REG_DATE,
-						       T1.HIT_COUNT
+						       T1.HIT_COUNT,
+						       T1.FILE_ID
 							  FROM BOARD T1
 							  ORDER BY T1.BOARD_ID DESC
 						) T1
@@ -40,17 +42,17 @@
 	</select>
 	
 	<select id="view" parameterClass="java.util.Map" resultMap="clobMap">
-		SELECT t1.BOARD_ID, t1.TITLE, t1.CONTENT, t1.REG_DATE, t1.HIT_COUNT 
+		SELECT t1.BOARD_ID, t1.TITLE, t1.CONTENT, t1.REG_DATE, t1.HIT_COUNT, t1.FILE_ID 
 		FROM BOARD t1
 		WHERE t1.BOARD_ID = #boardId#
 	</select>
 	
-	<delete id="delete" parameterClass="java.util.Map" >
+	<delete id="delete" parameterClass="java.util.Map">
 	 	DELETE BOARD t1
       	WHERE t1.BOARD_ID = #board_id#
 	</delete>
 	
-	<insert id="insert" parameterClass="java.util.Map" >
+	<insert id="insert" parameterClass="java.util.Map">
   	  	INSERT INTO BOARD (BOARD_ID,
         	               TITLE,
             	           CONTENT,
@@ -67,6 +69,12 @@
             		)
      	]]>       	
 	</insert>
+	
+	<update id="updateHitCount" parameterClass="java.util.Map">
+		UPDATE BOARD
+		   SET HIT_COUNT = HIT_COUNT + 1
+		 WHERE BOARD_ID = #boardId#
+	</update>
 	
 	
 </sqlMap>

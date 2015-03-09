@@ -85,8 +85,7 @@ public class CommonFileUtil {
 			GregorianCalendar today = new GregorianCalendar();
 
 			String CUR_YY = (today.get(today.YEAR)) + "";
-			String CUR_MM = String.format("%02d", (today.get(today.MONTH) + 1))
-					+ "";
+			String CUR_MM = String.format("%02d", (today.get(today.MONTH) + 1))	+ "";
 			String CUR_DD = (today.get(today.DAY_OF_MONTH)) + "";
 
 			String filePath = file_path + "/" + CUR_YY + "/" + CUR_MM + "/"	+ CUR_DD + "/";
@@ -94,18 +93,21 @@ public class CommonFileUtil {
 
 			int index = orginFileName.lastIndexOf(".");
 			String fileExt = orginFileName.substring(index + 1);
-			// long size = file.getSize();
+			long fileSize = file.getSize();
 
 			newName = keyStr + "_" + getTimeStamp() + "_" + fileKey + "." + fileExt;
 			writeFile(file, newName, filePath);
 
 			fvo = new FileVO();
 			fvo.setFileId(file_id);
-			fvo.setFilePath(file_path); 		// 파일경로 	 ex) C:/Dropbox/files/qbic/upload/2015/03/4/
-			fvo.setFileUploadNm(newName); 		// 업로드 파일명 ex) BOARD_20150304162205055_0.hwp
-			fvo.setFileOriginNm(orginFileName); // 실제 파일명 	 ex) 파일철라벨.hwp
-
-			LOG.info(fvo.toString());
+			fvo.setFilePath(file_path); 				// 파일경로 	 ex) C:/Dropbox/files/qbic/upload/2015/03/4/
+			fvo.setFileUploadNm(newName); 				// 업로드 파일명 ex) BOARD_20150304162205055_0.hwp
+			fvo.setFileOriginNm(orginFileName); 		// 실제 파일명 	 ex) 파일철라벨.hwp
+			fvo.setFileSn(String.valueOf(fileKey));		// 파일 SN 
+			fvo.setFileExt(fileExt);					// 파일확장자
+			fvo.setFileSize(fileSize);					// 파일크기
+			
+			// LOG.info(fvo.toString());
 			fileList.add(fvo);
 
 			fileKey++;

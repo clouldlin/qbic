@@ -6,6 +6,17 @@
 	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	<typeAlias alias="FileVO" type="co.kr.qbic.common.vo.FileVO"/>
 
+	<resultMap id="fileList" class="co.kr.qbic.common.vo.FileVO">
+		<result property="fileId" column="FILE_ID" columnIndex="1"/>
+		<result property="fileSn" column="FILE_SN" columnIndex="2"/>
+		<result property="filePath" column="FILE_PATH" columnIndex="3"/>
+		<result property="fileUploadNm" column="FILE_UPLOAD_NM" columnIndex="4"/>
+		<result property="fileOriginNm" column="FILE_ORIGIN_NM" columnIndex="5"/>
+		<result property="fileExt" column="FILE_EXT" columnIndex="6"/>
+		<result property="fileSize" column="FILE_SIZE" columnIndex="7"/>
+		<result property="regDate" column="REG_DATE" columnIndex="8"/>
+	</resultMap>
+
 	<insert id="insertFileMaster" parameterClass="FileVO" >
 		<![CDATA[
 			INSERT INTO FILE_MASTER
@@ -18,10 +29,20 @@
 	<insert id="insertFileDetail" parameterClass="FileVO" >
 		<![CDATA[
 			INSERT INTO FILE_DETAIL
-			(FILE_ID, FILE_SN, FILE_PATH, FILE_UPLOAD_NM, FILE_ORIGIN_NM)
+			(FILE_ID, FILE_SN, FILE_PATH, FILE_UPLOAD_NM, FILE_ORIGIN_NM, FILE_EXT, FILE_SIZE)
 			VALUES
-			( #fileId#, #fileSn#, #filePath#, #fileUploadNm#, #fileOriginNm#)
+			(#fileId#, #fileSn#, #filePath#, #fileUploadNm#, #fileOriginNm#, #fileExt#, #fileSize#)
 		]]>
 	</insert>
+	
+	<select id="selectFileList" parameterClass="FileVO" resultMap="fileList" >
+ 		<![CDATA[
+			SELECT T1.FILE_ID, T2.FILE_SN, T2.FILE_PATH, T2.FILE_UPLOAD_NM, T2.FILE_ORIGIN_NM, T2.FILE_EXT, T2.FILE_SIZE, T2.REG_DATE
+			FROM FILE_MASTER T1 INNER JOIN FILE_DETAIL T2 ON T1.FILE_ID = T2.FILE_ID
+			WHERE T1.FILE_ID = #fileId#
+			ORDER BY T2.FILE_SN
+ 		]]>
+ 	</select>
+	
 
 </sqlMap>

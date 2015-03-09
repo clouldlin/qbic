@@ -94,7 +94,13 @@ public class BoardController extends CommonAbstarctController {
 	
 	@RequestMapping("detail.do")
 	public String boardDetail(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
+		boardService.updateHitCount(commandMap);
 		Map view = boardService.view(commandMap);
+		logger.info(">>>>" + view.toString());
+		
+		//commonfileService.insertFileInfos(view.get("fileId"));
+		
+		//commonfileService.insertFileInfos(view.get("fileId"));
 		
 		model.addAttribute("searchData"	,commandMap);
 		model.addAttribute("view"		,view);

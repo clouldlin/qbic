@@ -36,7 +36,12 @@ public class BoardServiceImpl extends AbstractServiceImpl implements BoardServic
 	public void update(Map<String,String> commandMap) throws Exception {
 		boardDAO.update(commandMap);
 	}
-
+	
+	@Override
+	public void updateHitCount(Map<String,String> commandMap) throws Exception {
+		boardDAO.updateHitCount(commandMap);
+	}
+	
 	@Override
 	public void delete(Map<String, String> commandMap) throws Exception {
 		boardDAO.delete(commandMap);

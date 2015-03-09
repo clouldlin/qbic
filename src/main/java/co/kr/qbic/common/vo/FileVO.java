@@ -31,6 +31,21 @@ public class FileVO implements Serializable {
 	 * 저장파일명
 	 */
 	public String fileUploadNm = "";
+	
+	/**
+	 * 파일확장자
+	 */
+	public String fileExt = "";
+	
+	/**
+	 * 파일크기
+	 */
+	public long fileSize;
+	
+    /**
+     * 생성일자
+     */
+    public String regDate = "";
 
 	public String getFileId() {
 		return fileId;
@@ -71,7 +86,31 @@ public class FileVO implements Serializable {
 	public void setFileUploadNm(String fileUploadNm) {
 		this.fileUploadNm = fileUploadNm;
 	}
+	
+	public String getFileExt() {
+		return fileExt;
+	}
 
+	public void setFileExt(String fileExt) {
+		this.fileExt = fileExt;
+	}
+
+	public long getFileSize() {
+		return fileSize;
+	}
+
+	public void setFileSize(long fileSize) {
+		this.fileSize = fileSize;
+	}
+	
+	public String getRegDate() {
+		return regDate;
+	}
+
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	
 	/**
 	 * toString 메소드를 대치한다.
 	 */

@@ -25,6 +25,10 @@ public class BoardDAO extends EgovAbstractDAO {
 	public void update(Map<String, String> commandMap) throws Exception {
 		update("BoardSQL001.update",commandMap);
 	}
+	
+	public void updateHitCount(Map<String, String> commandMap) throws Exception {
+		update("BoardSQL001.updateHitCount",commandMap);
+	}
 
 	public void delete(Map<String, String> commandMap) throws Exception{
 		delete("BoardSQL001.delete",commandMap);
