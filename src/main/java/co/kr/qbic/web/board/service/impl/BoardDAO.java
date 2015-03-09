@@ -15,7 +15,7 @@ public class BoardDAO extends EgovAbstractDAO {
 	}
 
 	public int listTotalCount(Map<String, String> commandMap) throws Exception {
-		return (Integer) getSqlMapClientTemplate().queryForObject("BoardSQL001.boardListTotalCount",commandMap);
+		return (Integer) getSqlMapClientTemplate().queryForObject("BoardSQL001.listTotalCount",commandMap);
 	}
 
 	public Map view(Map<String,String> commandMap) throws Exception {

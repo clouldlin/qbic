@@ -50,7 +50,7 @@
 	        <c:forEach var="list" items="${boardList}" varStatus="status">
 				<tr id="boardList_${status.index}">
 					<td><c:out value="${listTotal + 1 - ((commonVO.pageIndex - 1) * commonVO.pageSize + status.count)}"/></td>
-					<td class="txt_left"><a href="http://localhost:9999/qbic/board/detail.do?seq=${list.seq}&pageIndex=${pageIndex}&txt_search=${txt_search}&keyword=${keyword}">${list.title}</a></td>
+					<td class="txt_left"><a href="http://localhost:9999/qbic/board/detail.do?boardId=${list.boardId}&pageIndex=${pageIndex}&txt_search=${txt_search}&keyword=${keyword}">${list.title}</a></td>
 					<td><img src="${pageContext.request.contextPath }/images/common/btn/btn_file.gif" alt="다운로드"></td>
 					<td>${list.regDate}</td>
 					<td class="line_none">${list.hitCount}</td>

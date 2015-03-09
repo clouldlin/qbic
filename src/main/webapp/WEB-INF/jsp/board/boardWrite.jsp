@@ -30,7 +30,7 @@
 	            <tr>
 	            	<th scope="row"><label for="name2">내용</label></th>
 	                <td colspan="2">
-	                    <textarea name="txt_content" id="txt_content" class="scroll_wrap"> </textarea>
+	                    <textarea name="txt_content" id="txt_content" class="scroll_wrap"></textarea>
 	                </td>
 	            </tr>
 	            <tr>

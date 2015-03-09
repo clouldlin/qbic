@@ -6,7 +6,7 @@
 	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 
 	<resultMap id="clobMap" class="EgovMap">
-		<result property="seq" column="SEQ"/>
+		<result property="board_id" column="BOARD_ID"/>
 		<result property="title" column="TITLE"/>
 		<result property="content" column="CONTENT" jdbcType="CLOB" javaType="java.lang.String"/>
 		<result property="reg_date" column="REG_DATE"/>	
@@ -19,13 +19,13 @@
 				(SELECT T1.*,
 			        	ROWNUM RNUM
 			        FROM
-					   (SELECT T1.SEQ,
+					   (SELECT T1.BOARD_ID,
 						       T1.TITLE,
 						       T1.CONTENT,
 						       T1.REG_DATE,
 						       T1.HIT_COUNT
 							  FROM BOARD T1
-							  ORDER BY T1.SEQ DESC
+							  ORDER BY T1.BOARD_ID DESC
 						) T1
 				) T1		
 		      	<![CDATA[
@@ -34,20 +34,39 @@
 			]]>
 	</select>
 	
-	<select id="boardListTotalCount" parameterClass="java.util.Map" resultClass="int">
+	<select id="listTotalCount" parameterClass="java.util.Map" resultClass="int">
 		SELECT COUNT(*) totcnt
 		FROM BOARD 
 	</select>
 	
-	<select id="board_view" parameterClass="java.util.Map" resultMap="clobMap">
-		SELECT t1.SEQ, t1.TITLE, t1.CONTENT, t1.REG_DATE, t1.HIT_COUNT 
+	<select id="view" parameterClass="java.util.Map" resultMap="clobMap">
+		SELECT t1.BOARD_ID, t1.TITLE, t1.CONTENT, t1.REG_DATE, t1.HIT_COUNT 
 		FROM BOARD t1
-		WHERE t1.SEQ = #seq#
+		WHERE t1.BOARD_ID = #boardId#
 	</select>
 	
-	<delete id="board_delete" parameterClass="java.util.Map" >
-	  DELETE BOARD t1
-      WHERE t1.SEQ = #seq#
+	<delete id="delete" parameterClass="java.util.Map" >
+	 	DELETE BOARD t1
+      	WHERE t1.BOARD_ID = #board_id#
 	</delete>
+	
+	<insert id="insert" parameterClass="java.util.Map" >
+  	  	INSERT INTO BOARD (BOARD_ID,
+        	               TITLE,
+            	           CONTENT,
+            	           REG_DATE,
+            	           HIT_COUNT,
+            	           FILE_ID)
+       <![CDATA[
+      		VALUES (#board_id#			,
+        		    #title# 			,
+            		#txt_content#		,
+            		SYSDATE 			,
+            		'0'	  				,
+            		#fileId#
+            		)
+     	]]>       	
+	</insert>
+	
 	
 </sqlMap>

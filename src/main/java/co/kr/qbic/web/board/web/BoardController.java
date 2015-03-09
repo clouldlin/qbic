@@ -35,9 +35,9 @@ public class BoardController extends CommonAbstarctController {
 	@Autowired
 	BoardService boardService;
 	
-    /** ID Generation Service */
-	@Resource(name = "egovFileIdGnrService")
-	private EgovIdGnrService egovFileIdGnrService;
+	/** BOARD_ID Generation Service */
+	@Resource(name = "egovBoardIdGnrService")
+	private EgovIdGnrService egovBoardIdGnrService;
 	
 	@RequestMapping("list.do")
 	public String boardList(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
@@ -80,7 +80,9 @@ public class BoardController extends CommonAbstarctController {
 		Iterator fileIter = multiRequest.getFileNames();
     	Map<String,String> map = new HashMap<String,String>();
     	
-    	// logger.info(egovFileIdGnrService.getNextStringId());
+    	commandMap.put("board_id", egovBoardIdGnrService.getNextStringId());
+    	
+    	logger.info(commandMap.toString());
     	
     	boardService.insert(commandMap);
     	
@@ -97,7 +99,6 @@ public class BoardController extends CommonAbstarctController {
     			
     			// commandMap.put(key, egovFileIdGnrService.getNextStringId());
     		}
-    		
     	}
     	
 		logger.info(commandMap.toString());

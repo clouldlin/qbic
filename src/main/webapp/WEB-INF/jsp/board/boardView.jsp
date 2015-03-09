@@ -44,7 +44,7 @@
     </table>
     
     <form name="boardFrm" id="boardFrm" method="post">
-    	<input type="hidden" id="seq" name="seq" value="${detailView.seq}"/>
+    	<input type="hidden" id="board_id" name="board_id" value="${detailView.boardId}"/>
     </form>
     
     <div class="btn_wrap_c">

@@ -19,4 +19,26 @@
         <property name="cipers" value="15" />
         <property name="fillChar" value="0" />
     </bean>
+    
+    <!-- 첨부파일 ID Generation  Config-->
+    <bean name="egovBoardIdGnrService" class="egovframework.rte.fdl.idgnr.impl.EgovTableIdGnrService" destroy-method="destroy">
+        <property name="dataSource" ref="dataSource" />
+        <property name="strategy" ref="boardStrategy" />
+        <property name="blockSize"  value="1"/> <!-- 시퀀스 증가크기 -->
+        <property name="table"      value="IDS"/>
+        <property name="tableName"  value="BOARD_ID"/>
+    </bean>
+    
+    <!-- 첨부파일 ID Generation  Strategy Config -->
+    <bean name="boardStrategy" class="egovframework.rte.fdl.idgnr.impl.strategy.EgovIdGnrStrategyImpl">
+        <property name="prefix" value="BOARD_" />
+        <property name="cipers" value="14" />
+        <property name="fillChar" value="0" />
+    </bean>
+    
+    
+    
+    
+    
+    
 </beans>
