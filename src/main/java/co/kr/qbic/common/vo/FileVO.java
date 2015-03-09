@@ -10,17 +10,7 @@ public class FileVO implements Serializable {
 	/**
 	 * 첨부파일 아이디
 	 */
-	public String attachFileId = "";
-
-	/**
-	 * 파일확장자
-	 */
-	public String fileExtsn = "";
-
-	/**
-	 * 파일크기
-	 */
-	public String fileMg = "";
+	public String fileId = "";
 
 	/**
 	 * 파일연번
@@ -30,40 +20,24 @@ public class FileVO implements Serializable {
 	/**
 	 * 파일저장경로
 	 */
-	public String fileStreCours = "";
+	public String filePath = "";
 	
 	/**
 	 * 원파일명
 	 */
-	public String orignlFileNm = "";
+	public String fileOriginNm = "";
 	
 	/**
 	 * 저장파일명
 	 */
-	public String streFileNm = "";
+	public String fileUploadNm = "";
 
-	public String getAttachFileId() {
-		return attachFileId;
+	public String getFileId() {
+		return fileId;
 	}
 
-	public void setAttachFileId(String atchFileId) {
-		this.attachFileId = atchFileId;
-	}
-
-	public String getFileExtsn() {
-		return fileExtsn;
-	}
-
-	public void setFileExtsn(String fileExtsn) {
-		this.fileExtsn = fileExtsn;
-	}
-
-	public String getFileMg() {
-		return fileMg;
-	}
-
-	public void setFileMg(String fileMg) {
-		this.fileMg = fileMg;
+	public void setFileId(String fileId) {
+		this.fileId = fileId;
 	}
 
 	public String getFileSn() {
@@ -74,28 +48,28 @@ public class FileVO implements Serializable {
 		this.fileSn = fileSn;
 	}
 
-	public String getFileStreCours() {
-		return fileStreCours;
+	public String getFilePath() {
+		return filePath;
 	}
 
-	public void setFileStreCours(String fileStreCours) {
-		this.fileStreCours = fileStreCours;
+	public void setFilePath(String filePath) {
+		this.filePath = filePath;
 	}
 
-	public String getOrignlFileNm() {
-		return orignlFileNm;
+	public String getFileOriginNm() {
+		return fileOriginNm;
 	}
 
-	public void setOrignlFileNm(String orignlFileNm) {
-		this.orignlFileNm = orignlFileNm;
+	public void setFileOriginNm(String fileOriginNm) {
+		this.fileOriginNm = fileOriginNm;
 	}
 
-	public String getStreFileNm() {
-		return streFileNm;
+	public String getFileUploadNm() {
+		return fileUploadNm;
 	}
 
-	public void setStreFileNm(String streFileNm) {
-		this.streFileNm = streFileNm;
+	public void setFileUploadNm(String fileUploadNm) {
+		this.fileUploadNm = fileUploadNm;
 	}
 
 	/**

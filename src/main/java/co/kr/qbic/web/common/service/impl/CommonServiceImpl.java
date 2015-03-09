@@ -8,9 +8,10 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import co.kr.qbic.web.common.service.CommonService;
+import egovframework.rte.fdl.cmmn.AbstractServiceImpl;
 
 @Service("commonService")
-public class CommonServiceImpl implements CommonService {
+public class CommonServiceImpl extends AbstractServiceImpl implements CommonService {
 
 	@Resource(name = "commonDAO")
 	CommonDAO commonDAO;

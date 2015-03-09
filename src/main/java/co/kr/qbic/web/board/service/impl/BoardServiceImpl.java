@@ -8,10 +8,11 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import co.kr.qbic.web.board.service.BoardService;
+import egovframework.rte.fdl.cmmn.AbstractServiceImpl;
 
 
 @Service("boardService")
-public class BoardServiceImpl implements BoardService {
+public class BoardServiceImpl extends AbstractServiceImpl implements BoardService {
 
 	@Resource(name="boardDAO")
 	BoardDAO boardDAO;

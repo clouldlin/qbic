@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.util.WebUtils;
 
-import co.kr.qbic.common.util.string.CoStringUtil;
+import co.kr.qbic.common.util.string.CommonStringUtil;
 
 public class CommonWebUtil {
 
@@ -173,51 +173,6 @@ public class CommonWebUtil {
 	        }
 	        return "Firefox";
 	    }
-
-
-	    /**
-	     * Disposition 지정하기.
-	     *
-	     * @param filename
-	     * @param request
-	     * @param response
-	     * @return
-	     * @throws Exception
-	     */
-		 public static void setDisposition(String filename, HttpServletRequest request, HttpServletResponse response) throws Exception {
-				String browser = getBrowser(request);
-
-				String dispositionPrefix = "attachment; filename=";
-				String encodedFilename = null;
-
-				if (CoStringUtil.equals(browser,"MSIE")) {
-				    encodedFilename = URLEncoder.encode(filename, "UTF-8").replaceAll("\\+", "%20");
-				} else if (CoStringUtil.equals(browser,"Firefox")) {
-				    encodedFilename = "\"" + new String(filename.getBytes("UTF-8"), "8859_1") + "\"";
-				} else if (CoStringUtil.equals(browser,"Opera")) {
-				    encodedFilename = "\"" + new String(filename.getBytes("UTF-8"), "8859_1") + "\"";
-				} else if (CoStringUtil.equals(browser,"Chrome")) {
-				    StringBuffer sb = new StringBuffer();
-				    for (int i = 0; i < filename.length(); i++) {
-					char c = filename.charAt(i);
-					if (c > '~') {
-					    sb.append(URLEncoder.encode("" + c, "UTF-8"));
-					} else {
-					    sb.append(c);
-					}
-				    }
-				    encodedFilename = sb.toString();
-				} else {
-				    //throw new RuntimeException("Not supported browser");
-				    throw new IOException("Not supported browser");
-				}
-
-				response.setHeader("Content-Disposition", dispositionPrefix + encodedFilename);
-
-				if ("Opera".equals(browser)){
-				    response.setContentType("application/octet-stream;charset=UTF-8");
-				}
-		 }
 
 	/**
 	 * request 후 request에 해당하는 액션 전에 할 행동

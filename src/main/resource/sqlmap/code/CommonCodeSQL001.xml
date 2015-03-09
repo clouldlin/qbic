@@ -6,7 +6,7 @@
 	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
 	
 	<!-- 공통 코드 조회 -->
-	<select id="list"  parameterClass="searchVO" resultClass="egovMap">
+	<select id="list" parameterClass="java.util.Map"  resultClass="egovMap">
 		/* "CommonCodeSQL001".list */
 		SELECT *
 		FROM COMMON_CODE

@@ -30,7 +30,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import co.kr.qbic.common.Constants;
-import co.kr.qbic.common.util.string.CoStringUtil;
+import co.kr.qbic.common.util.string.CommonStringUtil;
 import co.kr.qbic.common.util.web.CommonWebUtil;
 
 public class CommonFileUtil {
@@ -621,15 +621,15 @@ public class CommonFileUtil {
 		String dispositionPrefix = "attachment; filename=";
 		String encodedFilename   = null;
 
-		if (CoStringUtil.equals(browser,"Trident")) {
+		if (CommonStringUtil.equals(browser,"Trident")) {
 		    encodedFilename = URLEncoder.encode(filename, "UTF-8").replaceAll("\\+", "%20");
-		}else if (CoStringUtil.equals(browser,"MSIE")) {
+		}else if (CommonStringUtil.equals(browser,"MSIE")) {
 		    encodedFilename = URLEncoder.encode(filename, "UTF-8").replaceAll("\\+", "%20");
-		} else if (CoStringUtil.equals(browser,"Firefox")) {
+		} else if (CommonStringUtil.equals(browser,"Firefox")) {
 		    encodedFilename = "\"" + new String(filename.getBytes("UTF-8"), "8859_1") + "\"";
-		} else if (CoStringUtil.equals(browser,"Opera")) {
+		} else if (CommonStringUtil.equals(browser,"Opera")) {
 		    encodedFilename = "\"" + new String(filename.getBytes("UTF-8"), "8859_1") + "\"";
-		} else if (CoStringUtil.equals(browser,"Chrome")) {
+		} else if (CommonStringUtil.equals(browser,"Chrome")) {
 		    StringBuffer sb = new StringBuffer();
 		    for (int i = 0; i < filename.length(); i++) {
 			char c = filename.charAt(i);
