@@ -4,10 +4,10 @@
 <sqlMap namespace="CommonCodeSQL001">
 	
 	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="searchVO" type="co.kr.qbic.common.vo.CommonVO"/>
 	
 	<!-- 공통 코드 조회 -->
-	<select id="list" parameterClass="java.util.Map"  resultClass="egovMap">
-		/* "CommonCodeSQL001".list */
+	<select id="list" parameterClass="searchVO" resultClass="egovMap">
 		SELECT *
 		FROM COMMON_CODE
 		WHERE 1=1

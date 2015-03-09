@@ -49,6 +49,29 @@ public class CommonStringUtil {
     	}
     }
     
+    /**
+     * <p>
+     * String이 비었거나("") 혹은 null 인지 검증한다.
+     * </p>
+     *
+     * <pre>
+     *  EfrosStringUtil.isNullBlank(null)      = ""
+     *  EfrosStringUtil.isNullBlank("")        = ""
+     * </pre>
+     *
+     * @param str - 체크 대상 스트링오브젝트이며 null을 허용함
+     * @return <code>true</code> - 입력받은 String 이 빈 문자열 또는 null인 경우
+     */
+    public static String isNullBlank(String str) {
+
+    	String rstr = "";
+    	if(str == null || str.length() == 0 || str.equals("") || str.trim().equals("")){
+    		rstr = "";
+    	}else{
+    		return str;
+    	}
+        return rstr;
+    }
     
 
 }

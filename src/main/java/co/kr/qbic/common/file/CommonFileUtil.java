@@ -96,18 +96,11 @@ public class CommonFileUtil {
 			long fileSize = file.getSize();
 
 			newName = keyStr + "_" + getTimeStamp() + "_" + fileKey + "." + fileExt;
+			
 			writeFile(file, newName, filePath);
 
-			fvo = new FileVO();
-			fvo.setFileId(file_id);
-			fvo.setFilePath(file_path); 				// 파일경로 	 ex) C:/Dropbox/files/qbic/upload/2015/03/4/
-			fvo.setFileUploadNm(newName); 				// 업로드 파일명 ex) BOARD_20150304162205055_0.hwp
-			fvo.setFileOriginNm(orginFileName); 		// 실제 파일명 	 ex) 파일철라벨.hwp
-			fvo.setFileSn(String.valueOf(fileKey));		// 파일 SN 
-			fvo.setFileExt(fileExt);					// 파일확장자
-			fvo.setFileSize(fileSize);					// 파일크기
+			fvo = setFileVO(fileKey, file_path, file_id, orginFileName,	newName, fileExt, fileSize);
 			
-			// LOG.info(fvo.toString());
 			fileList.add(fvo);
 
 			fileKey++;
@@ -115,7 +108,7 @@ public class CommonFileUtil {
 
 		return fileList;
 	}
-	
+
 	/**
 	 * 첨부파일을 서버에 저장한다.
 	 *
@@ -406,5 +399,20 @@ public class CommonFileUtil {
 		}
 		return file_path;
 	}
+	
+	// FileVO 매핑
+	private FileVO setFileVO(int fileKey, String file_path, String file_id,	String orginFileName, String newName, String fileExt, long fileSize) {
+		FileVO fvo;
+		fvo = new FileVO();
+		fvo.setFileId(file_id);
+		fvo.setFilePath(file_path); 				// 파일경로 	 ex) C:/Dropbox/files/qbic/upload/2015/03/4/
+		fvo.setFileUploadNm(newName); 				// 업로드 파일명 ex) BOARD_20150304162205055_0.hwp
+		fvo.setFileOriginNm(orginFileName); 		// 실제 파일명 	 ex) 파일철라벨.hwp
+		fvo.setFileSn(String.valueOf(fileKey));		// 파일 SN 
+		fvo.setFileExt(fileExt);					// 파일확장자
+		fvo.setFileSize(fileSize);					// 파일크기
+		return fvo;
+	}
+	
 	
 }

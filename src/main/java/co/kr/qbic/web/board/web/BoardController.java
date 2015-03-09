@@ -63,7 +63,12 @@ public class BoardController extends CommonAbstarctController {
 		totCnt= boardService.listTotalCount(commandMap);
 		paginationInfo.setTotalRecordCount(totCnt);
 		
+		List<?> codeList = listCommCode("BOARD_SEARCH_CONDS");
+		
+		logger.info(">>> " + codeList.toString());
+		
 		model.addAttribute("boardList"		, list);
+		model.addAttribute("codeList"		, codeList);
 		model.addAttribute("commonVO"		, commonVO);
 		model.addAttribute("listTotal"		, totCnt);
 		model.addAttribute("paginationInfo"	, paginationInfo);
@@ -96,11 +101,7 @@ public class BoardController extends CommonAbstarctController {
 	public String boardDetail(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
 		boardService.updateHitCount(commandMap);
 		Map view = boardService.view(commandMap);
-		logger.info(">>>>" + view.toString());
-		
-		//commonfileService.insertFileInfos(view.get("fileId"));
-		
-		//commonfileService.insertFileInfos(view.get("fileId"));
+		// logger.info(">>>>" + view.toString());
 		
 		model.addAttribute("searchData"	,commandMap);
 		model.addAttribute("view"		,view);

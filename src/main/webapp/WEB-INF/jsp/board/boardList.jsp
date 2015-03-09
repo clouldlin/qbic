@@ -15,9 +15,12 @@
 		<div class="board_wrap_right ">
 			<fieldset class="board_search">
 				<legend>검색</legend>
-				<select name="" title="검색분류 선택" style="width: 80px; height: 23px;">
-					<option value="">전체</option>
-				</select> 
+				<select name="keyword" id="keyword" title="검색분류 선택" style="width: 80px; height: 23px;">
+					<option value="ALL" selected="selected">전체</option>
+					<c:forEach var="codeList" items="${codeList}" varStatus="status">
+						<option value="${codeList.codeName}" <c:if test="${keyword == codeList.codeName}"> selected="selected"</c:if>>${codeList.codeData}</option>
+					</c:forEach>
+				</select>
 				<input type="text" title="검색어 입력" class="txt_box3" value="" />
 				<input type="image" src="${pageContext.request.contextPath }/images/common/btn/btn_a_search.gif" alt="검색" />
 			</fieldset>
