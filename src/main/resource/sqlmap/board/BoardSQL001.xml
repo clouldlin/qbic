@@ -63,7 +63,7 @@
             		#txt_content#		,
             		SYSDATE 			,
             		'0'	  				,
-            		#fileId#
+            		#file_id#
             		)
      	]]>       	
 	</insert>

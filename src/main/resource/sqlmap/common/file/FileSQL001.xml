@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="FileSQL001">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+	<typeAlias alias="FileVO" type="co.kr.qbic.common.vo.FileVO"/>
+
+	<insert id="insertFileMaster" parameterClass="FileVO" >
+		<![CDATA[
+			INSERT INTO FILE_MASTER
+			(FILE_ID, REG_DATE, USE_AT)
+			VALUES
+			(#fileId#, SYSDATE, 'Y')
+		]]>
+	</insert>
+
+	<insert id="insertFileDetail" parameterClass="FileVO" >
+		<![CDATA[
+			INSERT INTO FILE_DETAIL
+			(FILE_ID, FILE_SN, FILE_PATH, FILE_UPLOAD_NM, FILE_ORIGIN_NM)
+			VALUES
+			( #fileId#, #fileSn#, #filePath#, #fileUploadNm#, #fileOriginNm#)
+		]]>
+	</insert>
+
+</sqlMap>

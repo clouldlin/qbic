@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import co.kr.qbic.common.vo.CommonVO;
-import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -19,10 +18,6 @@ public class CommonAbstarctController {
 	@Resource(name = "propertiesService")
 	protected EgovPropertyService propertiesService;
 	
-    /** FIEL_ID Generation Service */
-	@Resource(name = "egovFileIdGnrService")
-	private EgovIdGnrService egovFileIdGnrService;
-
 	/**
 	 * PaginationInfo 에 페이지에 대한 정보를 셋팅해 준다. pageRecourdCount 에 대한 셋팅
 	 * 

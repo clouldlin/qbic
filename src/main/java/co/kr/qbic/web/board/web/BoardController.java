@@ -1,7 +1,5 @@
 package co.kr.qbic.web.board.web;
 
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -17,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import co.kr.qbic.common.Constants;
 import co.kr.qbic.common.controller.CommonAbstarctController;
 import co.kr.qbic.common.file.CommonFileUtil;
+import co.kr.qbic.common.file.service.CommonFileService;
 import co.kr.qbic.common.util.string.CommonStringUtil;
 import co.kr.qbic.common.vo.CommonVO;
+import co.kr.qbic.common.vo.FileVO;
 import co.kr.qbic.web.board.service.BoardService;
 import egovframework.rte.fdl.idgnr.EgovIdGnrService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -34,6 +33,12 @@ public class BoardController extends CommonAbstarctController {
 
 	@Autowired
 	BoardService boardService;
+	
+    @Resource(name = "commonFileUtil")
+    private CommonFileUtil commonFileUtil;
+
+    @Resource(name = "commonFileService")
+    private CommonFileService commonfileService;
 	
 	/** BOARD_ID Generation Service */
 	@Resource(name = "egovBoardIdGnrService")
@@ -54,67 +59,46 @@ public class BoardController extends CommonAbstarctController {
 		int totCnt = 0;
 
 		List<?> list = boardService.list(commandMap);
-		// logger.info(list.toString());
 		
 		totCnt= boardService.listTotalCount(commandMap);
 		paginationInfo.setTotalRecordCount(totCnt);
 		
-		model.addAttribute("boardList", list);
+		model.addAttribute("boardList"		, list);
 		model.addAttribute("commonVO"		, commonVO);
 		model.addAttribute("listTotal"		, totCnt);
 		model.addAttribute("paginationInfo"	, paginationInfo);
-		model.addAttribute("content","board/boardList.jsp");
+		model.addAttribute("content"		,"board/boardList.jsp");
 		return "main.tiles";
 	}
 	
 	@RequestMapping("write.do")
 	public String boardWrite(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
 		
-		/* 파일 업로드 */
-		MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+		String fileId = "";
+    	List<FileVO> fileList = null;
+    	
+    	MultipartHttpServletRequest multiRequest = (MultipartHttpServletRequest) request;
+	    final Map<String, MultipartFile> files = multiRequest.getFileMap();
+	    
+	    if (!files.isEmpty()) {
+	    	fileList = commonFileUtil.parseFileInfo(files, "BOARD", 0, "", "");
+	    	fileId = commonfileService.insertFileInfos(fileList);
+	    }
 		
-		String docPath = "";
-        String fileName = "";
-        String orgName = "";
-
-		Iterator fileIter = multiRequest.getFileNames();
-    	Map<String,String> map = new HashMap<String,String>();
-    	
+	    commandMap.put("file_id", fileId);
     	commandMap.put("board_id", egovBoardIdGnrService.getNextStringId());
-    	
-    	logger.info(commandMap.toString());
-    	
     	boardService.insert(commandMap);
-    	
-    	while (fileIter.hasNext()) {
-    		MultipartFile mFile = multiRequest.getFile((String)fileIter.next());
-
-    		if (mFile.getSize() > 0) {
-    			map.clear();
-    			map = CommonFileUtil.uploadFile(mFile, propertiesService.getString("Globals.fileStorePath"));
-    			
-    			docPath = map.get(Constants.FILE_PATH);			// 파일경로 		  ex) C:/Dropbox/files/qbic/upload/2015/03/4/
-    			fileName = map.get(Constants.UPLOAD_FILE_NM);	// 업로드 파일명      ex) 20150304162205055.hwp 
-    			orgName = map.get(Constants.ORIGIN_FILE_NM);	// 실제 파일명		  ex) 파일철라벨.hwp 
-    			
-    			// commandMap.put(key, egovFileIdGnrService.getNextStringId());
-    		}
-    	}
-    	
-		logger.info(commandMap.toString());
 		
 		return "redirect:/board/list.do";
 	}
 	
 	@RequestMapping("detail.do")
 	public String boardDetail(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
-		// logger.info(commandMap.toString());	
-		Map detailView = boardService.view(commandMap);
+		Map view = boardService.view(commandMap);
 		
-		logger.info(detailView.toString());	
-		model.addAttribute("searchData"		,commandMap);
-		model.addAttribute("detailView"		,detailView);
-		model.addAttribute("content","board/boardView.jsp");
+		model.addAttribute("searchData"	,commandMap);
+		model.addAttribute("view"		,view);
+		model.addAttribute("content"	,"board/boardView.jsp");
 		
 		return "main.tiles";
 	}

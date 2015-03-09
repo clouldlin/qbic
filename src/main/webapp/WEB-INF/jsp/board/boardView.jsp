@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th scope="row" class="line_bottom">제목</th>
-                <td colspan="3" class="line_bottom title">${detailView.title}</td>
+                <td colspan="3" class="line_bottom title">${view.title}</td>
             </tr>
 			<!--             
 			<tr>
@@ -31,20 +31,20 @@
                 <th scope="row" >작성일</th>
                 <td>${detailView.regDate}</td>
                 <th scope="row" >조회수</th>
-                <td class="txt_center">${detailView.hitCount}</td>
+                <td class="txt_center">${view.hitCount}</td>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td title="내용" colspan="4">
-                    <div class="board_view_suj">${detailView.content}</div>
+                    <div class="board_view_suj">${view.content}</div>
                 </td>
             </tr>
         </tbody>
     </table>
     
     <form name="boardFrm" id="boardFrm" method="post">
-    	<input type="hidden" id="board_id" name="board_id" value="${detailView.boardId}"/>
+    	<input type="hidden" id="board_id" name="board_id" value="${view.boardId}"/>
     </form>
     
     <div class="btn_wrap_c">
