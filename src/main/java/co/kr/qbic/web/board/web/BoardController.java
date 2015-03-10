@@ -65,8 +65,6 @@ public class BoardController extends CommonAbstarctController {
 		
 		List<?> codeList = listCommCode("BOARD_SEARCH_CONDS");
 		
-		// logger.info(">>> " + codeList.toString());
-		
 		model.addAttribute("boardList"		, list);
 		model.addAttribute("codeList"		, codeList);
 		model.addAttribute("commonVO"		, commonVO);
