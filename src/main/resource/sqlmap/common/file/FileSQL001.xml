@@ -16,6 +16,16 @@
 		<result property="fileSize" column="FILE_SIZE" columnIndex="7"/>
 		<result property="regDate" column="REG_DATE" columnIndex="8"/>
 	</resultMap>
+	
+	<resultMap id="fileDetail" class="co.kr.qbic.common.vo.FileVO">
+		<result property="fileId" column="FILE_ID" columnIndex="1"/>
+		<result property="fileSn" column="FILE_SN" columnIndex="2"/>
+		<result property="filePath" column="FILE_PATH" columnIndex="3"/>
+		<result property="fileUploadNm" column="FILE_UPLOAD_NM" columnIndex="4"/>
+		<result property="fileOriginNm" column="FILE_ORIGIN_NM" columnIndex="5"/>
+		<result property="fileExt" column="FILE_EXT" columnIndex="6"/>
+		<result property="fileSize" column="FILE_SIZE" columnIndex="7"/>
+	</resultMap>
 
 	<insert id="insertFileMaster" parameterClass="FileVO" >
 		<![CDATA[
@@ -41,6 +51,15 @@
 			FROM FILE_MASTER T1 INNER JOIN FILE_DETAIL T2 ON T1.FILE_ID = T2.FILE_ID
 			WHERE T1.FILE_ID = #fileId#
 			ORDER BY T2.FILE_SN
+ 		]]>
+ 	</select>
+ 	
+ 	<select id="selectFileInfo" parameterClass="FileVO" resultMap="fileDetail" >
+ 		<![CDATA[
+			SELECT T1.FILE_ID, T1.FILE_SN, T1.FILE_PATH, T1.FILE_UPLOAD_NM, T1.FILE_ORIGIN_NM, T1.FILE_EXT, T1.FILE_SIZE
+			FROM FILE_DETAIL T1
+			WHERE T1.FILE_ID = #fileId#
+			AND T1.FILE_SN = #fileSn#
  		]]>
  	</select>
 	

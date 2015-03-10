@@ -86,7 +86,7 @@ public class BoardController extends CommonAbstarctController {
 	    final Map<String, MultipartFile> files = multiRequest.getFileMap();
 	    
 	    if (!files.isEmpty()) {
-	    	fileList = commonFileUtil.parseFileInfo(files, "BOARD", 0, "", "");
+	    	fileList = commonFileUtil.parseFileInfo(files, "BOARD", 0);
 	    	fileId = commonfileService.insertFileInfos(fileList);
 	    }
 		

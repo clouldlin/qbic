@@ -123,8 +123,8 @@ public class CommonFileDAO extends EgovAbstractDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public FileVO selectFileInf(FileVO fvo) throws Exception {
-		return (FileVO) selectByPk("FileManageDAO.selectFileInf", fvo);
+	public FileVO selectFileInfo(FileVO fvo) throws Exception {
+		return (FileVO) selectByPk("FileSQL001.selectFileInfo", fvo);
 	}
 
 	/**

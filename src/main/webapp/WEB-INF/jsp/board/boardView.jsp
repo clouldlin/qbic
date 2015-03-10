@@ -42,7 +42,7 @@
 						<c:forEach var="flist" varStatus="i" items="${fileList}">
 							<tr class="file_down_c">
  								<td>
-									<a href="#" onclick="file_down('${flist.fileId}');"><font color="#6798FD">${flist.fileOriginNm}</font></a>
+									<a href="#" onclick="file_down('${flist.fileId}', '${flist.fileSn}');"><font color="#6798FD">${flist.fileOriginNm}</font></a>
 								</td>
 							</tr>
 						</c:forEach>

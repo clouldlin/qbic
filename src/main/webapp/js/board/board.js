@@ -108,8 +108,8 @@
   * @param obj	:	fileName
   * @return  	:
   ********************************************************************************/
-	 var file_down = function(fileName) {
-	 	 location.href="/file/download";
+	 var file_down = function(fileId,fileSn) {
+	 	 location.href= baseUrl + "common/file/fileDown.do?fileId=" + fileId + "&fileSn=" + fileSn;
 	 }	
 	
 	

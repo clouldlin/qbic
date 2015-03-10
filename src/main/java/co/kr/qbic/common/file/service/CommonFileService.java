@@ -65,7 +65,7 @@ public interface CommonFileService {
 	 * @return
 	 * @throws Exception
 	 */
-	public FileVO selectFileInf(FileVO fvo) throws Exception;
+	public FileVO selectFileInfo(FileVO fvo) throws Exception;
 
 	/**
 	 * 파일 구분자에 대한 최대값을 구한다.

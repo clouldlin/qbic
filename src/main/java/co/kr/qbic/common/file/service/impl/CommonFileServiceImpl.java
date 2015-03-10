@@ -90,8 +90,8 @@ public class CommonFileServiceImpl extends AbstractServiceImpl implements Common
 	 * 파일에 대한 상세정보를 조회한다.
 	 *
 	 */
-	public FileVO selectFileInf(FileVO fvo) throws Exception {
-		return commonFileDAO.selectFileInf(fvo);
+	public FileVO selectFileInfo(FileVO fvo) throws Exception {
+		return commonFileDAO.selectFileInfo(fvo);
 	}
 
 	/**
