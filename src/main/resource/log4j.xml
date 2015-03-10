@@ -47,18 +47,18 @@
 	<logger name="org.springframework" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="CON" />
-		<appender-ref ref="ROLL" />
+		<appender-ref ref="File" />
 	</logger>
 
 
 	<logger name="java.sql" additivity="false">
 		<level value="INFO" />
 		<appender-ref ref="CON" />
-		<appender-ref ref="ROLL" />
+		<appender-ref ref="File" />
 	</logger>
 	<root>
 		<level value="INFO" additivity="false"/>
 		<appender-ref ref="CON" />
-		<appender-ref ref="ROLL" />
+		<appender-ref ref="File" />
 	</root>
 </log4j:configuration>

@@ -11,7 +11,7 @@
 #header .logo { padding: 40px 20px;}
 
 /* leftmenu */
-#content .leftmenu {float: left;width: 224px;}
+#content .leftmenu {float: left; width:223px;}
 #content .leftmenu h2 {margin-top: 50px;text-align: center;}
 
 /* content */
@@ -43,7 +43,7 @@ table td.line_none { border-right: none; }
 table.board_view_a tr td {border: none;}
 table.board_view_a thead th {padding: 9px 0; font-weight: normal; text-align: center; background: #eee; border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0;}
 table.board_view_a { color: #444; border-top: 1px solid #a8a8a9; }
-table.board_view_a thead td.title {background: #eee;text-align: left;}
+table.board_view_a thead td.line_title {background: #eee;text-align: left; font-weight: bold;}
 table.board_view_a thead td {text-align: left; padding-left: 15px; line-height:16px;padding: 9px 13px 9px 13px;border-bottom: 1px solid #e0e0e0;}
 table.board_view_a thead .line_bottom {border-bottom: 1px solid #a8a8a9;}
 table.board_view_a td.txt_center { text-align: center;}
@@ -51,7 +51,7 @@ table.board_view_a tbody td div.board_view_suj {padding: 20px; line-height: 20px
 
 table.board_write_a {color:#444;border-top:1px solid #a8a8a9;}
 table.board_write_a thead th {padding:9px 0;font-weight:normal;text-align:center;background:#eee;border-bottom:1px solid #e0e0e0;border-right:1px solid #e0e0e0;}
-table.board_write_a thead td.title {background:#eee;text-align:left;} 
+table.board_write_a thead td.line_title {background:#eee; text-align:left;} 
 table.board_write_a thead td {text-align:left;padding-left:15px; line-height:16px;padding:5px 13px 5px 13px;border-bottom:1px solid #e0e0e0;}
 table.board_write_a thead td span {font-size:11px;margin-left:10px;}
 table.board_write_a td.txt_center {text-align:center;}
@@ -60,6 +60,8 @@ table.board_write_a tbody td {line-height:20px;border-bottom:1px solid #a8a8a9; 
 table.board_write_a textarea.scroll_wrap {width:580px; height: 292px; border: 1px solid #a8a8a9; rows:22; wrap:soft; resize:none;}
 
 #fileArea td {padding: 7px 10px; text-align:left; border: 1px solid #b1b071;}
+.file_down_c {background-color:#F6F6F6;}
+
 
 div.btn_wrap_c {margin-top: 10px; text-align: right; }
 div.btn_left { float: left; width: 359px; text-align: left; }

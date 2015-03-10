@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th scope="row" class="line_bottom">제목</th>
-                <td colspan="3" class="line_bottom title">${view.title}</td>
+                <td colspan="3" class="line_bottom line_title">${view.title}</td>
             </tr>
 			<!--             
 			<tr>
@@ -29,10 +29,28 @@
             -->
             <tr>
                 <th scope="row" >작성일</th>
-                <td>${detailView.regDate}</td>
+                <td>${view.regDate}</td>
                 <th scope="row" >조회수</th>
                 <td class="txt_center">${view.hitCount}</td>
             </tr>
+            <c:choose>
+				<c:when test="${!empty fileList}">
+	            <tr>
+	                <th scope="row">첨부파일</th>
+	                <td colspan="3">
+	                	<table>
+						<c:forEach var="flist" varStatus="i" items="${fileList}">
+							<tr class="file_down_c">
+ 								<td>
+									<a href="#" onclick="file_down('${flist.fileId}');"><font color="#6798FD">${flist.fileOriginNm}</font></a>
+								</td>
+							</tr>
+						</c:forEach>
+						</table>
+	                </td>
+	            </tr>
+	           	</c:when>
+			</c:choose>
         </thead>
         <tbody>
             <tr>

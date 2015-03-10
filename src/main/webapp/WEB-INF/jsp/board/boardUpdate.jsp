@@ -19,7 +19,7 @@
         <thead>
             <tr>
                 <th scope="row" class="line_bottom">제목</th>
-                <td colspan="3" class="line_bottom title">${detailView.title}</td>
+                <td colspan="3" class="line_bottom line_title">${detailView.title}</td>
             </tr>
 			<!--             
 			<tr>

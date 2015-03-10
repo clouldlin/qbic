@@ -14,7 +14,7 @@ public interface CommonFileService {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<FileVO> selectFileInfs(FileVO fvo) throws Exception;
+	public List<FileVO> selectFileInfos(FileVO fvo) throws Exception;
 
 	public List<FileVO> selectFileInfsGov(FileVO fvo) throws Exception;
 

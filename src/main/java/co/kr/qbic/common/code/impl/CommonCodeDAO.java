@@ -15,7 +15,4 @@ public class CommonCodeDAO extends EgovAbstractDAO {
 		return list("CommonCodeSQL001.list", searchVO);
 	}
 
-	public List selectListSubCode(Map<String, String> map) throws Exception {
-		return list("CodeSQL001.subList", map);
-	}
 }

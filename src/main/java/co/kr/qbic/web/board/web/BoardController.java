@@ -65,7 +65,7 @@ public class BoardController extends CommonAbstarctController {
 		
 		List<?> codeList = listCommCode("BOARD_SEARCH_CONDS");
 		
-		logger.info(">>> " + codeList.toString());
+		// logger.info(">>> " + codeList.toString());
 		
 		model.addAttribute("boardList"		, list);
 		model.addAttribute("codeList"		, codeList);
@@ -101,10 +101,18 @@ public class BoardController extends CommonAbstarctController {
 	public String boardDetail(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
 		boardService.updateHitCount(commandMap);
 		Map view = boardService.view(commandMap);
-		// logger.info(">>>>" + view.toString());
+		
+		List<FileVO> fileList = null;
+		
+		if(view.get("fileId") != null){
+			FileVO fvo = new FileVO();
+			fvo.setFileId(view.get("fileId").toString());
+			fileList = commonfileService.selectFileInfos(fvo);
+		}
 		
 		model.addAttribute("searchData"	,commandMap);
 		model.addAttribute("view"		,view);
+		model.addAttribute("fileList"		,fileList);
 		model.addAttribute("content"	,"board/boardView.jsp");
 		
 		return "main.tiles";

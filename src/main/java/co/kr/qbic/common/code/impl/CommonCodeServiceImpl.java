@@ -22,9 +22,4 @@ public class CommonCodeServiceImpl implements CommonCodeService {
 		return commonCodeDAO.selectListCode(searchVO);
 	}
 
-	@Override
-	public List selectListSubCode(Map<String, String> map) throws Exception {
-		return commonCodeDAO.selectListSubCode(map);
-	}
-
 }

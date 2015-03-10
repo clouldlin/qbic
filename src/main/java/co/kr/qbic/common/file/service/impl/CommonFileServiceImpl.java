@@ -61,8 +61,8 @@ public class CommonFileServiceImpl extends AbstractServiceImpl implements Common
 	 * 파일에 대한 목록을 조회한다.
 	 *
 	 */
-	public List<FileVO> selectFileInfs(FileVO fvo) throws Exception {
-		return commonFileDAO.selectFileInfs(fvo);
+	public List<FileVO> selectFileInfos(FileVO fvo) throws Exception {
+		return commonFileDAO.selectFileInfos(fvo);
 	}
 
 	public List<FileVO> selectFileInfsGov(FileVO fvo) throws Exception {
@@ -133,4 +133,5 @@ public class CommonFileServiceImpl extends AbstractServiceImpl implements Common
 	public List<FileVO> selectImageFileList(FileVO vo) throws Exception {
 		return commonFileDAO.selectImageFileList(vo);
 	}
+
 }

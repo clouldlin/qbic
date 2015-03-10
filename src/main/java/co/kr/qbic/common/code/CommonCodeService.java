@@ -9,5 +9,4 @@ public interface CommonCodeService {
 
 	public List selectListCode(CommonVO searchVO) throws Exception;
 
-	public List selectListSubCode(Map<String, String> map) throws Exception;
 }

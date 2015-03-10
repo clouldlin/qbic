@@ -97,8 +97,8 @@ public class CommonFileDAO extends EgovAbstractDAO {
 	 * @return
 	 * @throws Exception
 	 */
-	public List<FileVO> selectFileInfs(FileVO vo) throws Exception {
-		return list("FileManageDAO.selectFileList", vo);
+	public List<FileVO> selectFileInfos(FileVO vo) throws Exception {
+		return list("FileSQL001.selectFileList", vo);
 	}
 
 	public List<FileVO> selectFileInfsGov(FileVO vo) throws Exception {
