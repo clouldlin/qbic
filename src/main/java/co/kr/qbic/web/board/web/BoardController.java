@@ -87,9 +87,12 @@ public class BoardController extends CommonAbstarctController {
 	    	fileList = commonFileUtil.parseFileInfo(files, "BOARD", 0);
 	    	fileId = commonfileService.insertFileInfos(fileList);
 	    }
-		
+	    
 	    commandMap.put("file_id", fileId);
     	commandMap.put("board_id", egovBoardIdGnrService.getNextStringId());
+    	commandMap.put("txt_content", (String) request.getAttribute("txt_content"));
+    	commandMap.put("title", (String) request.getAttribute("title"));
+    	
     	boardService.insert(commandMap);
 		
 		return "redirect:/board/list.do";

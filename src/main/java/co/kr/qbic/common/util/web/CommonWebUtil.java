@@ -1,7 +1,5 @@
 package co.kr.qbic.common.util.web;
 
-import java.io.IOException;
-import java.net.URLEncoder;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Enumeration;
@@ -13,8 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.util.WebUtils;
-
-import co.kr.qbic.common.util.string.CommonStringUtil;
 
 public class CommonWebUtil {
 
