@@ -1,4 +1,4 @@
-package co.kr.qbic.common.filter;
+package co.kr.qbic.common.filter.xss;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;

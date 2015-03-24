@@ -1,4 +1,4 @@
-package co.kr.qbic.common.filter;
+package co.kr.qbic.common.filter.xss;
 
 import java.util.Enumeration;
 import java.util.regex.Pattern;

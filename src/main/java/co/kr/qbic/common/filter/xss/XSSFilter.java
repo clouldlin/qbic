@@ -1,4 +1,4 @@
-package co.kr.qbic.common.filter;
+package co.kr.qbic.common.filter.xss;
 
 import java.io.IOException;
 

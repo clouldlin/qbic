@@ -58,7 +58,7 @@
 	<mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**" />
-            <bean class="co.kr.qbic.common.filter.XSSInterceptor" />
+            <bean class="co.kr.qbic.common.filter.xss.XSSInterceptor" />
         </mvc:interceptor>
     </mvc:interceptors>
 
