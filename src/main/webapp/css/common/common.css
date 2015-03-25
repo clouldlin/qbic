@@ -7,6 +7,7 @@ a { text-decoration: none; color:#444444;}
 img,fieldset, button { border: 0px; }
 table { border-collapse: collapse; }
 caption, legend { font-size:0px; line-height: 0px; width:0px; height:0px; overflow:hidden; } 
+fieldset {border: 0 solid transparent;}
 /* 기본적으로  font-size:0px 인 경우라도 브라저우저 기본 line-height: 120%를 가지므로 line-height:0px;로 지정한다.*/
 
 /* 하단푸터고정 */

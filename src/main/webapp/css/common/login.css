@@ -1,0 +1,23 @@
+/* login */
+.login{position:absolute;top:30px;right:125px;width:294px;height:176px;border:2px solid #4d4d4d;background:#fff;z-index:900}
+.login p.login_title{padding:12px}
+.login p.login_title span.layerclose{float:right}
+.login .inner{background:#f8f8f8;border-top:1px solid #b6b9c3;border-bottom:1px solid #b6b9c3;padding:10px 13px}
+.login label{font-weight:bold;width:65px;color:#595959;display:inline-block}
+.login .btn_center{clear:both;text-align:center;padding-top:5px}
+.login button {border:0;background:transparent;cursor:pointer;overflow:visible}
+.login input, button {font-size: 12px;  overflow: visible;}
+.login input.tbox01 {width: 192px; height: 28px;}
+.login input[type="text"] {font-size: 12px; color: #696969; padding-left: 3px; border: 1px solid #aaadb2;}
+.login input[type="password"] {font-size: 12px; color: #696969; padding-left: 3px; border: 1px solid #aaadb2;}
+.login p, a, img, fieldset, label, legend, button {
+  padding: 0;
+  margin: 0;
+  margin: 0;
+  border: 0;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+.login p{margin-bottom:5px}
+.login p.last{margin-bottom:0}
