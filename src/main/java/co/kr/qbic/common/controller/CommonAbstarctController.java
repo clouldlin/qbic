@@ -4,13 +4,16 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import co.kr.qbic.common.code.CommonCodeService;
+import co.kr.qbic.common.login.LoginSessionManager;
 import co.kr.qbic.common.util.string.CommonStringUtil;
 import co.kr.qbic.common.vo.CommonVO;
+import co.kr.qbic.common.vo.LoginVO;
 import egovframework.rte.fdl.property.EgovPropertyService;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
@@ -23,6 +26,9 @@ public class CommonAbstarctController {
 	
 	@Resource(name = "commonCodeService")
 	protected CommonCodeService commonCodeService;
+	
+	@Resource(name = "loginSessionManager")
+	protected LoginSessionManager loginSessionManager;
 	
 	/**
 	 * 공통코드를 조회해서 List로 넘겨준다.
@@ -67,4 +73,46 @@ public class CommonAbstarctController {
 
 		return pageInfo;
 	}
+	
+	/**
+	 * 로그인 vo getter 메서드
+	 * null일 수도 있다 .
+	 * @return 로그인 vo
+	 */
+	protected LoginVO getLoginVO() {
+		LoginVO getLoginVO = null;
+		if(loginSessionManager.getLoginVO() != null){
+			getLoginVO = loginSessionManager.getLoginVO();
+		}else{
+			getLoginVO = new LoginVO();
+		}
+		return getLoginVO;
+	}
+
+	/**
+	 * 로그인 vo remove 메서드
+	 */
+	protected void removeLoginVO() {
+		loginSessionManager.removeLoginVO();
+	}
+
+	/**
+	 * 세션을 생성해준다.
+	 *
+	 * @param DspCoLoginVO
+	 */
+	protected void setSession(LoginVO loginVO) {
+		loginSessionManager.setSession(loginVO);
+	}
+
+	/**
+	 * 세션을 삭제한다.
+	 *
+	 * @param request
+	 */
+	protected void removeSession(HttpServletRequest req) {
+		loginSessionManager.removeSession(req);
+	}
+	
+	
 }

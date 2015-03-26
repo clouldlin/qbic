@@ -6,9 +6,9 @@ ul { margin:0px; padding: 0px; list-style: none; }
 a { text-decoration: none; color:#444444;}
 img,fieldset, button { border: 0px; }
 table { border-collapse: collapse; }
+/* 기본적으로  font-size:0px 인 경우라도 브라저우저 기본 line-height: 120%를 가지므로 line-height:0px;로 지정한다.*/
 caption, legend { font-size:0px; line-height: 0px; width:0px; height:0px; overflow:hidden; } 
 fieldset {border: 0 solid transparent;}
-/* 기본적으로  font-size:0px 인 경우라도 브라저우저 기본 line-height: 120%를 가지므로 line-height:0px;로 지정한다.*/
 
 /* 하단푸터고정 */
 html, body{height:100%}
@@ -20,6 +20,17 @@ html, body{height:100%}
 .relative { position: relative; }
 .absolute { position: absolute; }
 .title {font-weight:bold; color: #6798FD}
+
+/* header */
+#header {width: 100%; overflow: hidden;border-bottom: 1px solid #e4e4e4;}
+#header .global_wrap{width:990px; margin:0 auto; overflow:hidden;}
+#header .global_wrap h1{float:left; margin-top:15px;}
+#header .global a{color:#888;}
+#header .global ul{float:right; margin-top:40px;}
+#header .global ul li{display:inline-block; float:left; text-align:center}
+#header .global .global1{width:130px;}
+#header .global .last{width:80px;}
+#header .logo { padding: 40px 20px;}
 
 /* footer */
 #footer {overflow:hidden; clear:both; border-top:1px solid #e4e4e4 ; width:100%; padding-bottom:20px; /*margin-top:20px;*/}

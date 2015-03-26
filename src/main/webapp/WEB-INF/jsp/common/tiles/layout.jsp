@@ -11,7 +11,9 @@
 		<tiles:insertAttribute name="header" />
 	</div>
 	<!-- header end -->
-
+	<!-- login start -->
+	<tiles:insertAttribute name="login" />
+	<!-- login end -->
 	<!-- container start -->
 	<div id="container">
 		<div id="content">

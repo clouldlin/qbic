@@ -1,29 +1,50 @@
+$(document).ready(function(){
 /********************************************************************************
-* 기      능   	: Ajax 데이터 return 
+* 기      능   	:	화면 로딩 후 로그인창 display off
 * @param obj 	: 
-* @return  		: result
+* @return  		: 
 ********************************************************************************/
-  function requestData( url, paramsJson, asyncHandler, lodingHandler ) {
-		var asyncYn = false;
-		if (asyncHandler != null) asyncYn = true;
-		var result = null;
-		if(paramsJson == "undefined" || paramsJson == null ){
-			paramsJson = null;
-		} 
-		var  xhr = $.ajax({
-			  url: url,
-			  async: asyncYn, 
-			  type:'post',
-			  data: paramsJson ,
-			  dataType: "json",
-			  success: function(transport,status,xhr) {
-					result = transport;
-			  },
-			  error: function(transport,status,xhr) {
-				  //alert(url+'\n'+'시스템 관리자에게 문의 바랍니다.');
-			  },
-			  complete: function(transport,status,xhr) {}
-			});
-		return result;
-	}
-  	
+	$('#login').hide();
+	
+/********************************************************************************
+* 기      능   	:	로그인창 display on/off
+* @param obj 	: 
+* @return  		: 
+********************************************************************************/
+	$('#login_button').click(function() {
+		$('#login').toggle();
+		$('#login_id').focus();
+	});
+	
+/********************************************************************************
+* 기      능   	:	로그인창 display off
+* @param obj 	: 
+* @return  		: 
+********************************************************************************/
+	$('#login_close').click(function() {
+		$('#login').hide();
+	});
+	
+/********************************************************************************
+* 기      능   	:	로그인 reset
+* @param obj 	: 
+* @return  		: 
+********************************************************************************/
+	$('#login_reset').click(function() {
+		$("#login_id").val(null);
+		$("#password").val(null);
+	});
+
+/********************************************************************************
+* 기      능   	:	로그인
+* @param obj 	: 
+* @return  		: 
+********************************************************************************/
+	$('#login_confirm').click(function() {
+		$('#loginFrm').attr('action', baseUrl+'member/login.do');
+		$('#loginFrm').submit();
+	});
+	
+	
+});
+

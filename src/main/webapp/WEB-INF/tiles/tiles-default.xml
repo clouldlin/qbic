@@ -2,11 +2,11 @@
 <!DOCTYPE tiles-definitions PUBLIC
        "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
        "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
-       
 <tiles-definitions>
     <definition name="main.default" template="/WEB-INF/jsp/common/tiles/layout.jsp">
         <put-attribute name="common"    value="/WEB-INF/jsp/common/inc/common.jsp" />
         <put-attribute name="header"    value="/WEB-INF/jsp/common/inc/header.jsp" />
+        <put-attribute name="login"    value="/WEB-INF/jsp/common/inc/login.jsp" />
         <put-attribute name="leftmenu"    	value="/WEB-INF/jsp/common/inc/leftmenu.jsp" />
         <put-attribute name="content"   value="" />
         <put-attribute name="footer"    value="/WEB-INF/jsp/common/inc/footer.jsp" />

@@ -15,7 +15,25 @@
     <context:component-scan base-package="co.kr.qbic">
        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
     </context:component-scan>
-
+	
+	<!-- 메시지소스빈 설정 -->
+    <bean id="egovMessageSource" class="co.kr.qbic.common.message.CommonMessageSource">
+        <property name="reloadableResourceBundleMessageSource">
+            <ref bean="messageSource" />
+        </property> 
+    </bean>
+    <!-- 프로퍼티 파일 위치 설정 -->
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basenames">
+            <list>
+                <value>classpath:/message/com/message-common</value>
+            </list>
+        </property>
+        <property name="cacheSeconds">
+            <value>60</value>
+        </property>
+    </bean>    
+	
     <bean class="egovframework.rte.fdl.cmmn.trace.LeaveaTrace" id="leaveaTrace">
         <property name="traceHandlerServices">
             <list>

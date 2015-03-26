@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="LoginSQL001">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+		
+	<!-- 로그인 처리를 위한 resultMap -->
+	<resultMap id="Login" class="co.kr.qbic.common.vo.LoginVO">
+		<result property="userId" column="id" columnIndex="1"/>
+		<result property="userName" column="name" columnIndex="2"/>
+	</resultMap>
+	
+	
+	<select id="loginUserCheck" parameterClass="java.util.Map" resultClass="int">
+		SELECT count(*) AS count
+		FROM USERS t1
+		<![CDATA[
+			WHERE t1.ID = #id#
+			AND t1.PASSWD = #password# 
+		]]>	
+	</select>
+	
+	<select id="selectUserById" parameterClass="java.util.Map" resultMap="Login">
+		SELECT t1.id, t1.name
+		FROM USERS t1
+		<![CDATA[
+			WHERE t1.ID = #id#
+			AND t1.PASSWD = #password# 
+		]]>	
+	</select>
+	
+</sqlMap>

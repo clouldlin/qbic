@@ -1,15 +1,5 @@
 @charset "utf-8";
 
-/* header */
-#header {width: 100%; overflow: hidden;border-bottom: 1px solid #e4e4e4;}
-#header .global_wrap{width:990px; margin:0 auto; overflow:hidden;}
-#header .global_wrap h1{float:left; margin-top:15px;}
-#header .global a{color:#888;}
-#header .global ul{float:right; margin-top:40px;}
-#header .global ul li{display:inline-block; float:left; text-align:center}
-#header .global .global1{width:63px;}
-#header .logo { padding: 40px 20px;}
-
 /* leftmenu */
 #content .leftmenu {float: left; width:223px;}
 #content .leftmenu h2 {margin-top: 50px;text-align: center;}

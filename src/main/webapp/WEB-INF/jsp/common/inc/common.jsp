@@ -17,7 +17,7 @@
 <link type="text/css" rel="stylesheet" href="<c:url value='/css/common/jquery/jquery.ui.all.css'/>" />
 <link type="text/css" rel="stylesheet" href="<c:url value='/css/common/jquery/jquery.ui.datepicker.css'/>" />
 <link type="text/css" rel="stylesheet" href="<c:url value='/css/common/common.css'/>" />
-<link type="text/css" rel="stylesheet" href="<c:url value='/css/common/login.css'/>" />
+<link type="text/css" rel="stylesheet" href="<c:url value='/css/login/login.css'/>" />
 <link type="text/css" rel="stylesheet" href="<c:url value='/css/board/board.css'/>" />
 <script type="text/javascript">
 var baseUrl		= 	"<%=contextPath%>/";
@@ -37,4 +37,5 @@ var baseUrl		= 	"<%=contextPath%>/";
 <script type="text/javascript" src="<c:url value='/js/common/jquery/jquery.MultiFile.js'/>"></script>
 
 <script type="text/javascript" src="<c:url value='/js/common/common.js'/>"></script>
+<script type="text/javascript" src="<c:url value='/js/common/login/login.js'/>"></script>
 
