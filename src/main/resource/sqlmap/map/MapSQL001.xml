@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="MapSQL001">
+
+	<typeAlias alias="egovMap" type="egovframework.rte.psl.dataaccess.util.EgovMap"/>
+
+	<select id="sidoCodeList" parameterClass="java.util.Map" resultClass="egovMap">
+		SELECT SUBSTR(t1.LAWD_CD,1,2) AS SIDO_CODE, t1.SIDO_NM FROM LANDCODE t1
+		GROUP BY SUBSTR(t1.LAWD_CD,1,2), t1.SIDO_NM
+		ORDER BY SUBSTR(t1.LAWD_CD,1,2), t1.SIDO_NM 
+	</select>
+	
+	<select id="sggCodeList" parameterClass="java.util.Map" resultClass="egovMap">
+		<![CDATA[
+			SELECT SUBSTR(t1.LAWD_CD,3,3) AS SGG_CODE, t1.SGG_NM  
+		   	FROM LANDCODE t1   
+			WHERE SUBSTR(t1.LAWD_CD, 1, 2) = #sido_cd#
+			GROUP BY SUBSTR(t1.LAWD_CD,3,3), t1.SGG_NM  
+      		HAVING SUBSTR(t1.LAWD_CD,3,3) != '000'
+			ORDER BY SUBSTR(t1.LAWD_CD,3,3), t1.SGG_NM 
+		]]>
+	</select>
+	
+	<select id="umdCodeList" parameterClass="java.util.Map" resultClass="egovMap">
+		<![CDATA[
+		   SELECT SUBSTR(t1.LAWD_CD,6,3) AS UMD_CODE, t1.UMD_NM  
+		   FROM LANDCODE t1   
+		   WHERE SUBSTR(t1.LAWD_CD, 1, 5) = #sgg_cd#
+		   GROUP BY SUBSTR(t1.LAWD_CD,6,3), t1.UMD_NM  
+           HAVING SUBSTR(t1.LAWD_CD,6,3) != '000'
+		   ORDER BY SUBSTR(t1.LAWD_CD,6,3), t1.UMD_NM  
+		]]>
+	</select>
+	
+	<select id="lawdCodeList" parameterClass="java.util.Map" resultClass="egovMap">
+		<![CDATA[
+			SELECT t1.LON, t1.LAT, t1.ZOOM_LEVEL FROM LANDCODE t1
+			WHERE t1.LAWD_CD = #lawd_cd#
+		]]>
+	</select>
+	
+	<select id="indexCodeList" parameterClass="java.util.Map" resultClass="egovMap">
+		<![CDATA[
+			SELECT T1.CODE_NAME, T1.CODE_DATA 
+			FROM CODE_DETAIL T1 
+			WHERE T1.CLASS_CODE = #CLASS_CODE#
+			AND T1.CODE_GROUP 	= #CODE_GROUP#
+			ORDER BY T1.SORT_ORD
+		]]>
+	</select>
+	
+</sqlMap>

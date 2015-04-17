@@ -78,8 +78,9 @@ $(document).ready(function(){
 * @param obj 	: 
 * @return  		: result
 ********************************************************************************/
-  function requestData( url, paramsJson, asyncHandler, lodingHandler ) {
+  var requestJsonData = function(url, paramsJson, type, asyncHandler, lodingHandler) {
 		var asyncYn = false;
+		if (type != null) type = "post"; 
 		if (asyncHandler != null) asyncYn = true;
 		var result = null;
 		if(paramsJson == "undefined" || paramsJson == null ){
@@ -88,23 +89,20 @@ $(document).ready(function(){
 		var  xhr = $.ajax({
 			  url: url,
 			  async: asyncYn, 
-			  type:'post',
+			  type:type,
 			  data: paramsJson ,
 			  dataType: "json",
-			  success: function(transport,status,xhr) {
+			  success: function(transport, status, xhr) {
 					result = transport;
 			  },
-			  error: function(transport,status,xhr) {
+			  error: function(transport, status, xhr) {
 				  //alert(url+'\n'+'시스템 관리자에게 문의 바랍니다.');
 			  },
 			  complete: function(transport,status,xhr) {}
-			});
+		});
 		return result;
-	}
+  }
   
-	
-  /* =========================================================================*/
-
   /* =========================================================================
    * 
    * LPAD
@@ -269,6 +267,26 @@ $(document).ready(function(){
 	 		return false;
 	 	}
   	};
+  	
+  	/* =========================================================================
+     * 
+     * 파라미터 쿼리 스트링
+     *  
+     * =========================================================================
+     */
+	 var getParameter = function(qs) {
+         var value = '';
+         var address = unescape(location.href);
+         var param= (address.slice(address .indexOf('?') + 1, address.length)).split('&');
+         for (var i = 0; i < param.length; i++) {
+             var name = param[i].split('=')[0];
+             if (name.toUpperCase() == qs.toUpperCase()) {
+                 value = param[i].split('=')[1];
+                 break;
+             }
+         }
+         return value ;
+	 }
   	
   	/* =========================================================================
      * 

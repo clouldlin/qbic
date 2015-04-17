@@ -22,14 +22,14 @@ import egovframework.rte.fdl.property.EgovPropertyService;
 		"file:src/main/resource/spring/context-sqlmap.xml"})
 
 public class PropertyServiceTest {
-	@Resource(name="propertyService")
-	protected EgovPropertyService propertyService ;
+	@Resource(name="propertiesService")
+	protected EgovPropertyService propertiesService ;
 	 
 	@Test
 	public void nothing(){}
 		
 	@Test
 	public void testPropertiesService() throws Exception {
-	   assertEquals("/app/specimen_new/webapp/upload/tmp",propertyService.getString("Globals.tmp.fileStorePath"));
+	   assertEquals("C:/Dropbox/files/qbic/upload",propertiesService.getString("Globals.fileStorePath"));
 	}
 }

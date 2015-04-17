@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+       
+<tiles-definitions>
+    <definition name="map.default" template="/WEB-INF/jsp/common/tiles/map/map-layout.jsp">
+        <put-attribute name="common"   value="/WEB-INF/jsp/common/inc/map/common.jsp" />
+        <put-attribute name="header"   value="/WEB-INF/jsp/common/inc/map/header.jsp" />
+        <put-attribute name="login"    value="/WEB-INF/jsp/common/inc/map/login.jsp" />
+        <put-attribute name="leftmenu" value="/WEB-INF/jsp/common/inc/map/leftmenu.jsp" /> 
+        <put-attribute name="content"  value="/WEB-INF/jsp/map/map.jsp" />
+        <put-attribute name="footer"   value="/WEB-INF/jsp/common/inc/map/footer.jsp" />
+    </definition>
+</tiles-definitions>

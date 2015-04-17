@@ -15,6 +15,7 @@ import org.springframework.web.util.WebUtils;
 import co.kr.qbic.common.Constants;
 import co.kr.qbic.common.controller.CommonAbstarctController;
 import co.kr.qbic.common.login.service.LoginService;
+import co.kr.qbic.common.message.CommonMessageSource;
 import co.kr.qbic.common.vo.LoginVO;
 
 @Controller
@@ -26,6 +27,9 @@ public class LoginController extends CommonAbstarctController{
     @Resource(name = "loginService")
     private LoginService loginService;
 
+    @Resource(name="commonMessageSource")
+    CommonMessageSource commonMessageSource;
+    
 	@RequestMapping("login.do")
     public String login(Map<String,String> commandMap, ModelMap model, HttpServletRequest request) throws Exception {
 		
@@ -36,12 +40,13 @@ public class LoginController extends CommonAbstarctController{
     		WebUtils.setSessionAttribute(request,Constants.userSession, loginVO);
     		// 현재 로그인 정보를 세션에 저장
     		loginSessionManager.setSession(loginVO);
-        	return "redirect:/board/list.do";
+        	return "redirect:/map/map.do";
     	}else{
+    		// logger.info(commonMessageSource.getMessage("fail.common.login"));
     		model.addAttribute("flag" ,"0");
-	    	model.addAttribute("message"   ,"아이디 또는 비밀번호가 일치하지 않습니다.");
+	    	model.addAttribute("message", commonMessageSource.getMessage("fail.common.login"));
 	    	
-	    	return "forward:/board/list.do";
+	    	return "forward:/map/map.do";
     	}
     }
 	
@@ -52,7 +57,7 @@ public class LoginController extends CommonAbstarctController{
     	removeSession(request);
     	removeLoginVO();
 
-		return "redirect:/board/list.do";
+		return "redirect:/map/map.do";
     }
 
 }

@@ -22,7 +22,7 @@
 <script type="text/javascript">
 var baseUrl		= 	"<%=contextPath%>/";
 </script>
-<script type="text/javascript" src="<c:url value='/js/common/jquery/jquery-1.9.1.js'/>"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="<c:url value='/js/common/jquery/jquery-ui-1.9.2.custom.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/common/jquery/jquery.ui.core.js'/>"></script>
 <script type="text/javascript" src="<c:url value='/js/common/jquery/jquery.ui.button.js'/>"></script>

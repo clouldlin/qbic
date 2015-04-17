@@ -9,7 +9,7 @@
 	<!-- 공통 코드 조회 -->
 	<select id="list" parameterClass="searchVO" resultClass="egovMap">
 		SELECT *
-		FROM COMMON_CODE
+		FROM CODE_DETAIL
 		WHERE 1=1
 		AND USE_YN = 'Y'
 		<isNotEmpty property="grpCd" prepend="AND">

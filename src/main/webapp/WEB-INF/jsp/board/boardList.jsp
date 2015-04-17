@@ -18,7 +18,7 @@
 				<select name="keyword" id="keyword" title="검색분류 선택" style="width: 80px; height: 23px;">
 					<option value="ALL" selected="selected">전체</option>
 					<c:forEach var="codeList" items="${codeList}" varStatus="status">
-						<option value="${codeList.codeName}" <c:if test="${keyword == codeList.codeName}"> selected="selected"</c:if>>${codeList.codeData}</option>
+						<option value="${codeList.codeData}" <c:if test="${keyword == codeList.codeData}"> selected="selected"</c:if>>${codeList.codeName}</option>
 					</c:forEach>
 				</select>
 				<input type="text" title="검색어 입력" class="txt_box3" value="" />

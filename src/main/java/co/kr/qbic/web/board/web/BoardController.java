@@ -63,8 +63,8 @@ public class BoardController extends CommonAbstarctController {
 		totCnt= boardService.listTotalCount(commandMap);
 		paginationInfo.setTotalRecordCount(totCnt);
 		
-		List<?> codeList = listCommCode("BOARD_SEARCH_CONDS");
-		
+		List<?> codeList = listCommCode("board_search");
+		logger.info(codeList.toString());
 		model.addAttribute("boardList"		, list);
 		model.addAttribute("codeList"		, codeList);
 		model.addAttribute("commonVO"		, commonVO);

@@ -19,7 +19,7 @@ public class CommonController {
 	CommonService commonService;
 
 	@RequestMapping("page.do")
-	public String guideList(Map<String, String> commandMap, ModelMap model,	HttpServletRequest request) throws Exception {
+	public String page(Map<String, String> commandMap, ModelMap model,	HttpServletRequest request) throws Exception {
 		model.addAttribute("script", commandMap.get("pagejs"));
 		model.addAttribute("content", commandMap.get("page"));
 		return "main.tiles";

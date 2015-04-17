@@ -1,6 +1,6 @@
 /* login */
-.login_area {position: relative; width: 1225px; margin: 0 auto;}
-.login{position:absolute;top:-40px;right:125px;width:294px;height:176px;border:2px solid #4d4d4d;background:#fff;z-index:900}
+.login_area {position: relative; width: 100%; margin: 0 auto;}
+.login{position:absolute;top:5px;right:2px;width:294px;height:176px;border:2px solid #4d4d4d;background:#fff;z-index:900}
 .login p.login_title{padding:12px}
 .login p.login_title span.layerclose{float:right}
 .login .inner{background:#f8f8f8;border-top:1px solid #b6b9c3;border-bottom:1px solid #b6b9c3;padding:10px 13px}
